@@ -92,7 +92,7 @@
 % going to use.
 % Examples of valid language codes: english (or USenglish), british,
 % finnish, swedish; and so on.
-\usepackage[finnish,swedish,english]{babel}
+\usepackage[finnish,english]{babel}
 
 
 % Font selection
@@ -317,14 +317,12 @@
 cetaceans, dolphins, porpoises}
 \newcommand{\FKEYWORDS}{AEL, aineistot, aitta, akustiikka, Alankomaat,
 aluerakentaminen, Anttolanhovi, Arcada, ArchiCad, arkki}
-\newcommand{\SKEYWORDS}{omsättning, kassaflöde, värdepappersmarknadslagen,
-yrkesutövare, intresseföretag, verifieringskedja}
 \newcommand{\LANGUAGE}{English}
 \newcommand{\FLANGUAGE}{Englanti}
 \newcommand{\SLANGUAGE}{Engelska}
 
 % Author is the same for all languages
-\newcommand{\AUTHOR}{Stella Student}
+\newcommand{\AUTHOR}{Mikael Matveinen}
 
 
 % Currently the English versions are used for the PDF file metadata
@@ -409,7 +407,9 @@ yrkesutövare, intresseföretag, verifieringskedja}
 \thesisabstract{english}{
 The introduction of game consoles with motion tracked controllers and depth sensing cameras has initiated a new wave of movement-based applications and games. These input devices paired with 3D display technologies that have recently become mainstream give hobbyists a chance of participating in the creation of virtual reality software at a much lower price point than was previously possible.
 
-This thesis details the design and implementation of RUIS (Reality-based User Interface System), a virtual reality toolkit for Unity3D. The main goal of RUIS is to make the creation of VR applications as straightforward as possible. This is achieved by providing users with basic building blocks that solve many of the challenges encountered in the development of VR software.
+This thesis details the design and implementation of RUIS (Reality-based User Interface System), a virtual reality toolkit for Unity3D. The main goal of RUIS is to make the creation of VR applications as straightforward as possible. This is achieved by providing users with basic building blocks that solve many of the challenges encountered in the development of VR software. These building blocks provide a layer of abstraction which givds the developer the chance to focus on interaction methods and the application itself.
+
+The two main tasks RUIS handles are input and display configuration management. The challenges involved in the management of input methods are for example the calibraton of coordinate systems, providing a clean interface for the usage of different types of devices in a standarized way and providing prebuilt modules that handle common VR tasks such as head tracking. The multitude of different virtual reality display configuratios on the other hand require solutions for multi-display environments, head tracked views, projector keystoning correction and stereographic displays. 
 
 
 A dissertation or thesis is a document submitted in support of candidature
