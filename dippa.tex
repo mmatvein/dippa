@@ -508,14 +508,8 @@ Thank you, and keep up the good work!
 
 \noindent
 \begin{longtable}{@{}p{0.25\textwidth}p{0.7\textwidth}@{}}
-DOF & Degrees of freedom
-2k/4k/8k mode & COFDM operation modes \\
-3GPP & 3rd Generation Partnership Project \\
-ESP & Encapsulating Security Payload; An IPsec security protocol \\
-FLUTE  & The File Delivery over Unidirectional Transport protocol \\
-e.g.& for example (do not list here this kind of common acronymbs or abbreviations, but only those that are essential for understanding the content of your thesis. \\
-note & Note also, that this list is not compulsory, and should be omitted if you have only few abbreviations
-
+DOF & Degrees of freedom \\
+CAVE & Cave Automatic Virtual Environment
 \end{longtable}
 
 
@@ -576,7 +570,7 @@ This chapter briefly discusses the history of virtual reality and how it has com
 \section{Display environments}
 \label{section:displayenvironments}
 
-\subsection{CAVE}
+\subsection{Cave Automatic Virtual Environment}
 \label{subsection:displayenvironments:cave}
 
 \subsection{Head-mounted Displays}
@@ -599,17 +593,19 @@ Wand controllers are input devices that are held in the hand like a wand. These 
 
 The first mainstream wand controller was the Nintendo Wii Remote \cite{WiiRemoteMain}, offering 3 degrees of freedom. Wii Remotes use an accelerometer to track the orientation of the controller. The use of only an accelerometer introduces drift in the yaw direction, so the tracking system also includes an infrared transmitter bar. This transmitter bar is seen by a camera at the tip of the Wii Remote controller as two infrared dots. This information combined with the rest of the orientation data of the controller can be combined to eliminate yaw drift and get accurate rotational tracking. Conversely, when the infrared transmitter bar is not seen by the controller, i.e. the controller is pointed away from the screen, rotation tracking accuracy will deteriorate. The Wii Remote was augmented later on with the Wii MotionPlus add-on, which includes a gyroscope, improving the rotational tracking considerably. 
 
-The Wii Remote was quickly followed by Sony's PlayStation Move 
+The Wii Remote was quickly followed by Sony's PlayStation Move \cite{PSMoveMain}. 
 
 
 \section{Similar toolkits}
 \label{section:similar}
 
-\chapter{Implementation}
-\label{chapter:implementation}
+\chapter{Design}
+\label{chapter:design}
 
 \section{Unity3D}
 \label{section:unity3d}
+
+\section{
 
 \section{External Libraries}
 \label{section:externallibraries}
@@ -623,10 +619,17 @@ The Wii Remote was quickly followed by Sony's PlayStation Move
 \subsection{Other}
 \label{subsection:external:other}
 
+PSMoveWrapper & PSMoveClient
+
+CSML
+
+\chapter{Implementation}
+\label{chapter:implementation}
+
 \chapter{Evaluation}
 \label{chapter:evaluation}
 
-\section{Final toolkit}
+\section{Final Toolkit}
 \label{section:finaltoolkit}
 
 \section{RUIS in Use}
