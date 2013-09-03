@@ -605,7 +605,8 @@ The Wii Remote was quickly followed by Sony's PlayStation Move \cite{PSMoveMain}
 \section{Unity3D}
 \label{section:unity3d}
 
-\section{
+\section{System Architechture}
+\label{section:systemarchitecture}
 
 \section{External Libraries}
 \label{section:externallibraries}
@@ -623,8 +624,22 @@ PSMoveWrapper & PSMoveClient
 
 CSML
 
-\chapter{Implementation}
-\label{chapter:implementation}
+\chapter{Input Management}
+\label{chapter:inputmanagement}
+
+\section{Coordinate Systems}
+\label{section:coordinatesystem}
+
+All of the motion control devices supported by RUIS operate in their own coordinate systems. In order to use all of these devices together the coordinate systems will have to be calibrated into one common system. Unity3D uses a consistent left-handed coordinate system with the basic distance unit being one meter, therefore, to make the use of RUIS as easy as possible for the end-user, it makes sense to transform all the input coordinates into the Unity3D coordinates.
+
+\section{Skeleton Tracking and Usage for Character Animation}
+\label{section:skeletontracking}
+
+\section{Wand Controllers}
+\label{section:wandcontrollers}
+
+\chapter{Display Management}
+\label{chapter:displaymanagement}
 
 \chapter{Evaluation}
 \label{chapter:evaluation}
