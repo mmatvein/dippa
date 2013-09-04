@@ -593,17 +593,23 @@ Wand controllers are input devices that are held in the hand like a wand. These 
 
 The first mainstream wand controller was the Nintendo Wii Remote \cite{WiiRemoteMain}, offering 3 degrees of freedom. Wii Remotes use an accelerometer to track the orientation of the controller. The use of only an accelerometer introduces drift in the yaw direction, so the tracking system also includes an infrared transmitter bar. This transmitter bar is seen by a camera at the tip of the Wii Remote controller as two infrared dots. This information combined with the rest of the orientation data of the controller can be combined to eliminate yaw drift and get accurate rotational tracking. Conversely, when the infrared transmitter bar is not seen by the controller, i.e. the controller is pointed away from the screen, rotation tracking accuracy will deteriorate. The Wii Remote was augmented later on with the Wii MotionPlus add-on, which includes a gyroscope, improving the rotational tracking considerably. 
 
-The Wii Remote was quickly followed by Sony's PlayStation Move \cite{PSMoveMain}. 
+The Wii Remote was quickly followed by Sony's PlayStation Move \cite{PSMoveMain}. Move features 6 DOF tracking, which makes it more usable in virtual reality applications requiring precise positional data. The positional tracking is achieved by having a separate camera track a glowing orb at the end of the controller. This kind of optical tracking results in the system being very vulnerable to occlusion issues. The user cannot for example hold the controller behind his body without losing accuracy. The range of the camera is also quite small, so the user does not have that big of an area to move in. \hl{more stuff}
 
+\hl{Razer Hydra}
 
 \section{Similar toolkits}
 \label{section:similar}
+
+\hl{RUIS for Processing}
+\hl{MiddleVR}
 
 \chapter{Design}
 \label{chapter:design}
 
 \section{Unity3D}
 \label{section:unity3d}
+
+
 
 \section{System Architechture}
 \label{section:systemarchitecture}
@@ -613,6 +619,8 @@ The Wii Remote was quickly followed by Sony's PlayStation Move \cite{PSMoveMain}
 
 \subsection{OpenNI}
 \label{subsection:external:openni}
+
+RUIS uses OpenNI \hl{OpenNI site} as its skeletal tracking library. OpenNI is an open-source framework used for developing applications featuring natural bodily interaction. In the case of RUIS, OpenNI is used in tandem with the NiTE middleware libraries \hl{NiTE site}. NiTE extracts the skeletal data and RUIS references it through the OpenNI Unity Wrapper. 
 
 \subsection{Oculus SDK}
 \label{subsection:external:oculussdk}
@@ -632,14 +640,16 @@ CSML
 
 All of the motion control devices supported by RUIS operate in their own coordinate systems. In order to use all of these devices together the coordinate systems will have to be calibrated into one common system. Unity3D uses a consistent left-handed coordinate system with the basic distance unit being one meter, therefore, to make the use of RUIS as easy as possible for the end-user, it makes sense to transform all the input coordinates into the Unity3D coordinates.
 
+
+
 \section{Skeleton Tracking and Usage for Character Animation}
 \label{section:skeletontracking}
 
 \section{Wand Controllers}
 \label{section:wandcontrollers}
 
-\chapter{Display Management}
-\label{chapter:displaymanagement}
+\chapter{Display Configuration Management}
+\label{chapter:displayconfigurationmanagement}
 
 \section{Multi-Display Systems}
 \label{section:multidisplaysystems}
@@ -651,6 +661,7 @@ All of the motion control devices supported by RUIS operate in their own coordin
 \label{section:keystonecorrection}
 
 \cite{TUGrazKeystoning}
+
 \chapter{Evaluation}
 \label{chapter:evaluation}
 
@@ -674,26 +685,26 @@ All of the motion control devices supported by RUIS operate in their own coordin
 % Appendices go here
 % ------------------------------------------------------------------
 % If you do not have appendices, comment out the following lines
-\appendix
+%\appendix
 % \input{appendices.tex}
 
-\chapter{First appendix}
-\label{chapter:first-appendix}
+%\chapter{First appendix}
+%\label{chapter:first-appendix}
 
-This is the first appendix. You could put some test images or verbose data in an
-appendix, if there is too much data to fit in the actual text nicely.
+%This is the first appendix. You could put some test images or verbose data in an
+%appendix, if there is too much data to fit in the actual text nicely.
 
-For now, the Aalto logo variants are shown in Figure~\ref{fig:aaltologo}.
+%For now, the Aalto logo variants are shown in Figure~\ref{fig:aaltologo}.
 
-\begin{figure}
-\begin{center}
-\subfigure[In English]{\includegraphics[width=.8\textwidth]{aalto-logo-en}}
-\subfigure[Suomeksi]{\includegraphics[width=.8\textwidth]{aalto-logo-fi}}
-\subfigure[Pä svenska]{\includegraphics[width=.8\textwidth]{aalto-logo-se}}
-\caption{Aalto logo variants}
-\label{fig:aaltologo}
-\end{center}
-\end{figure}
+%\begin{figure}
+%\begin{center}
+%\subfigure[In English]{\includegraphics[width=.8\textwidth]{aalto-logo-en}}
+%\subfigure[Suomeksi]{\includegraphics[width=.8\textwidth]{aalto-logo-fi}}
+%\subfigure[Pä svenska]{\includegraphics[width=.8\textwidth]{aalto-logo-se}}
+%\caption{Aalto logo variants}
+%\label{fig:aaltologo}
+%\end{center}
+%\end{figure}
 
 
 % End of document!
