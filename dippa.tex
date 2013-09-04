@@ -609,7 +609,11 @@ The Wii Remote was quickly followed by Sony's PlayStation Move \cite{PSMoveMain}
 \section{Unity3D}
 \label{section:unity3d}
 
+Unity3D \cite{UnitySite} is a game development environment and an engine that has recently gained a lot of popularity because of its power and ease of use. Unity3D simplifies common game development and content creation tasks, shortening development time.
 
+Code architecture in Unity3D is very much based on a common base class for all scene objects called GameObject. Functionality can be added to these GameObjects by attaching Components; either the ones that are built into Unity3D or by creating your own scripts inheriting the class MonoBehaviour. This way, different types of objects in the scene can be composed of small modular components with minimal coupling, keeping the overall structure quite easy to follow.
+
+Unity3D also features prefabs: prefabricated objects that can be drag and dropped into a scene. This allows users to create pre-built common game objects and easily share them between scenes. The use of prefabs is an important part of using Unity3D efficiently, so it was a big point to take into consideration in the development of RUIS. 
 
 \section{System Architechture}
 \label{section:systemarchitecture}
