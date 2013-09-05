@@ -692,12 +692,16 @@ The coordinate system calibration process is implemented in its own standalone s
 
 In order to combine Move and Kinect coordinates samples are taken from both systems, after which a transformation matrix is calculated. This matrix transforms the Move coordinates into their Kinect counterparts. The matrix includes rotation and translation transforms. Scale is excluded since the scaling difference between the two coordinate systems is already known beforehand: Kinect uses millimeters, while Move uses centimeters.
 
-The transformation matrix is calculated by creating the equation \ref{eq:m2kmatrix}.
+The Move to Kinect transformation matrix is calculated by creating the equation \ref{eq:m2kmatrix}, where K and M are n by 3 matrices, containing n corresponding Kinect and Move samples, and A is the wanted transform. This linear matrix equation can then be solved straightforwardly.
 
 \begin{equation}
     K = AM
     \label{eq:m2kmatrix}
 \end{equation}
+
+After finding the matrix A, the rotation and translation components are separated into a Quaternion and Vector3, which are ready to be applied to Move orientations and positions to turn them into their Kinect counterparts.
+
+Also, the real-world floor location and normal are found during the calibration process by using OpenNI's scene analysis tools. This information is then used to tilt the coordinate system to counteract the tilt angle of the Kinect camera and to set the floor to be at the y = 0 plane if the user wishes to do so.
 
 \subsection{Controlling Virtual Characters}
 \label{subsection:coordinatesystems:virtualcharacters}
