@@ -562,15 +562,23 @@ CAVE & Cave Automatic Virtual Environment
 
 % \input{2background.tex}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \chapter{Background}
 \label{chapter:background}
 
 This chapter briefly discusses the history of virtual reality and how it has come to the stage where a toolkit like RUIS makes it feasible for hobbyists to get involved.
 
+\section{Brief History of Virtual Reality}
+\label{section:historyofvr}
+
 \section{Display environments}
 \label{section:displayenvironments}
 
-\subsection{Cave Automatic Virtual Environment}
+\subsection{Cave Automatic Virtual Environment (CAVE)}
 \label{subsection:displayenvironments:cave}
 
 \subsection{Head-mounted Displays}
@@ -601,7 +609,13 @@ The Wii Remote was quickly followed by Sony's PlayStation Move \cite{PSMoveMain}
 \label{section:similar}
 
 \hl{RUIS for Processing}
+
 \hl{MiddleVR}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \chapter{Design}
 \label{chapter:design}
@@ -636,21 +650,10 @@ PSMoveWrapper & PSMoveClient
 
 CSML
 
-\chapter{Input Management}
-\label{chapter:inputmanagement}
 
-\section{Coordinate Systems}
-\label{section:coordinatesystem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-All of the motion control devices supported by RUIS operate in their own coordinate systems. In order to use all of these devices together the coordinate systems will have to be calibrated into one common system. Unity3D uses a consistent left-handed coordinate system with the basic distance unit being one meter, therefore, to make the use of RUIS as easy as possible for the end-user, it makes sense to transform all the input coordinates into the Unity3D coordinates.
-
-
-
-\section{Skeleton Tracking and Usage for Character Animation}
-\label{section:skeletontracking}
-
-\section{Wand Controllers}
-\label{section:wandcontrollers}
 
 \chapter{Display Configuration Management}
 \label{chapter:displayconfigurationmanagement}
@@ -666,6 +669,44 @@ All of the motion control devices supported by RUIS operate in their own coordin
 
 \cite{TUGrazKeystoning}
 
+\section{Integrating Oculus Rift}
+\label{section:integratingoculusrift}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Input Management}
+\label{chapter:inputmanagement}
+
+\section{Coordinate Systems}
+\label{section:coordinatesystem}
+
+All of the motion control devices supported by RUIS operate in their own coordinate systems. In order to use all of these devices together the coordinate systems will have to be calibrated into one common system. Unity3D uses a consistent left-handed coordinate system with the basic distance unit being one meter, therefore, to make the use of RUIS as easy as possible for the end-user, it makes sense to transform all the input coordinates into the Unity3D coordinates.
+
+
+
+\section{Skeleton Tracking and Character Animation}
+\label{section:skeletontracking}
+
+\subsection{Using Premade Models and Armatures}
+\label{subsection:skeletontracking:premademodels}
+
+\subsection{Combining Kinect and Mecanim}
+\label{subsection:skeletontracking:kinectandmecanim}
+
+\subsection{Controlling Virtual Characters}
+\label{subsection:skeletontracking:virtualcharacters}
+
+\section{Wand Controllers}
+\label{section:wandcontrollers}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \chapter{Evaluation}
 \label{chapter:evaluation}
 
@@ -674,6 +715,11 @@ All of the motion control devices supported by RUIS operate in their own coordin
 
 \section{RUIS in Use}
 \label{section:inuse}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \chapter{Conclusions}
 \label{chapter:conclusions}
