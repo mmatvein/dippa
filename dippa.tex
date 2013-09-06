@@ -724,16 +724,29 @@ Also, the real-world floor location and normal are found during the calibration 
 \subsection{Controlling Virtual Characters}
 \label{subsection:coordinatesystems:virtualcharacters}
 
-When moving virtual characters 
+When moving virtual characters it is important to differentiate which coordinate system the character will be moved in. In addition to the local and global coordinates of the game object itself, we have to take tracker coordinates into account.
 
 \section{Skeleton Tracking and Character Animation}
 \label{section:skeletontracking}
 
+To display a virtual character that matches the real-world movements of the user, the user skeleton will have to be tracked. RUIS uses OpenNI and a depth-sensing camera to achieve this. This procedure is detailed in chapter \ref{subsection:external:openni}. This section focuses on the software building upon the basic skeletal tracking to enable the creation of rich, interactive applications. 
+
 \subsection{Using Premade Models and Armatures}
 \label{subsection:skeletontracking:premademodels}
 
+Hierarchical models
+
+Scaling bones
+
+Fine-tuning the model
+
+Damping
+
 \subsection{Combining Kinect and Mecanim}
 \label{subsection:skeletontracking:kinectandmecanim}
+
+\subsection{Adding Physics to a Kinect-Controlled Virtual Character}
+\label{subsection:skeletontracking:physics}
 
 \section{Wand Controllers}
 \label{section:wandcontrollers}
@@ -755,6 +768,8 @@ When moving virtual characters
 
 \section{TurboTuscany}
 \label{section:turbotuscany}
+
+For the launch of the RUIS we decided to create a demo using the Oculus Rift Tuscany demo as a base. This would guarantee recognizability while adding some interesting features that showcase the power of RUIS. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
