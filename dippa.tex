@@ -668,6 +668,14 @@ RUIS uses OpenNI \hl{OpenNI site} as its skeletal tracking library. OpenNI is an
 \chapter{Display Configuration Management}
 \label{chapter:displayconfigurationmanagement}
 
+This chapter details all the implemented features regarding the management of displays. For starters, it is important for the user to be able to switch easily between monoscopic and stereoscopic modes of display. In addition to this, multiple displays of possibly different resolutions should be supported in a straightforward manner.
+
+When displaying virtual worlds on a static screen relative to the movement of the observing user, the stereoscopic effect and general immersion level can be improved by modifying the perspective projection matrix to account for the changes in head position. This can make it seem as if the user were looking at the virtual world through a real window. This method requires accurate head tracking in order to be fully immersive.
+
+As the last step in many projector systems, a projector keystoning correction will have to be applied. Projector keystoning is caused by projectors being off-center relative to the plane they are projecting on. This results in a distorted image that will be especially disturbing in multi-projector stereoscopic environments: The images for both eyes will not match and discrete seams will appear between the images meant for separate walls.
+
+Finally, this chapter discusses the challenges we faced when integrating the Oculus SDK into our project. A head-mounted display requires some extra configurability for example in the head tracking settings. We also wanted to make sure this freedom did not come at the expense of usability.
+
 \section{Multi-Display Systems}
 \label{section:multidisplaysystems}
 
