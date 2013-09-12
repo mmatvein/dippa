@@ -688,8 +688,16 @@ We tackle this problem by introducing a display manager component, RUISDisplayMa
 \subsection{Multiple Displays}
 \label{subsection:multidisplaysystems:multipledisplays}
 
+For each display, the user is able to specify the resolution of the display. The resolution specified is used to calculate the total needed resolution of the application. After this, each display, and the camera linked to it, is assigned its normalized viewport rectangle. 
+
+\hl{could have example pic of different display configurations}
+
 \subsection{Stereoscopy}
 \label{subsection:multidisplaysystems:stereoscopy}
+
+Once the basic framework for multiple displays is in place, it is quite straightforward to extend its functionality to include switching between mono and stereo displays. Most of the functionality for this is implemented at the RUISCamera level.
+
+In addition to the Unity3D Camera attached to the RUISCamera, two new GameObjects with the Camera script will have to be added underneath it: the left and right eye cameras. The Camera script attached to the parent GameObject is treated as the monoscopic camera, while the left and right cameras are used for stereoscopic rendering. The RUISCamera script will then reference all these three Camera scripts and enable them based on whether the display rendered to is mono or stereo. 
 
 \section{Perspective Projection for a Head-Tracked View}
 \label{section:perspectiveprojection}
