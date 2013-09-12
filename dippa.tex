@@ -699,6 +699,8 @@ Once the basic framework for multiple displays is in place, it is quite straight
 
 In addition to the Unity3D Camera attached to the RUISCamera, two new GameObjects with the Camera script will have to be added underneath it: the left and right eye cameras. The Camera script attached to the parent GameObject is treated as the monoscopic camera, while the left and right cameras are used for stereoscopic rendering. The RUISCamera script will then reference all these three Camera scripts and enable them based on whether the display rendered to is mono or stereo. 
 
+
+
 \section{Perspective Projection for a Head-Tracked View}
 \label{section:perspectiveprojection}
 
@@ -712,6 +714,7 @@ In addition to the Unity3D Camera attached to the RUISCamera, two new GameObject
 \section{Integrating Oculus Rift}
 \label{section:integratingoculusrift}
 
+Separate from all of the previous functinality is the Oculus Rift. Applications developed for the Rift require very different features from the display management system than CAVE applications, for example. Applications designed for head-mounted displays (HMD) usually use the HMD as their only display. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
