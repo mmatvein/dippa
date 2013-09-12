@@ -676,15 +676,20 @@ As the last step in many projector systems, a projector keystoning correction wi
 
 Finally, this chapter discusses the challenges we faced when integrating the Oculus SDK into our project. A head-mounted display requires some extra configurability for example in the head tracking settings. We also wanted to make sure this freedom did not come at the expense of usability.
 
-\section{Multi-Display Systems}
+\section{Multi-Display Systems and Stereoscopy}
 \label{section:multidisplaysystems}
 
 Many virtual reality applications make use of more than one display. Separate displays can be used to either show completely different information, or to wrap the virtual world around the user. Especially the latter is common in CAVE-like environments.
 
-The way Unity3D handles multiple camera viewpoints is by requiring the application to specify the normalized viewport rectangle of each camera, in other words, the area on the application window that the camera will render to. While the user can do this manually for each camera, the process will become tedious very quickly, especially when configuring multiple stereoscopic displays. 
+The way Unity3D handles multiple camera viewpoints is by requiring the application to specify the normalized viewport rectangle of each camera, in other words, the area of the application window that the camera will render to. While the user can do this manually for each camera, the process will become tedious very quickly, especially when configuring multiple stereoscopic displays. 
 
-We tackle this problem by introducing a display manager component, RUISDisplayManager, to handle the bulk of display-related configuration issues. The user can add, remove and rearrange displays via the editor. Separate displays are called RUISDisplays, signifying their connection to RUIS. Each RUISDisplay works independently of the other displays - the display manager handles all shared tasks. Each RUISDisplay is then linked to a RUISCamera - RUIS's version of the Unity3D standard Camera. 
+We tackle this problem by introducing a display manager component, RUISDisplayManager, to handle the bulk of display-related configuration issues. The user can add, remove and rearrange displays via the editor. Separate displays are called RUISDisplays, signifying their connection to RUIS. Each RUISDisplay works independently of the other displays - the display manager handles all shared tasks. Each RUISDisplay is then linked to a RUISCamera - RUIS's version of the Unity3D standard Camera. This chain of components implements all basic tasks required for multi-display, mono- and/or stereoscopic applications.
 
+\subsection{Multiple Displays}
+\label{subsection:multidisplaysystems:multipledisplays}
+
+\subsection{Stereoscopy}
+\label{subsection:multidisplaysystems:stereoscopy}
 
 \section{Perspective Projection for a Head-Tracked View}
 \label{section:perspectiveprojection}
