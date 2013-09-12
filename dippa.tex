@@ -773,6 +773,10 @@ Damping
 \subsection{Adding Physics to a Kinect-Controlled Virtual Character}
 \label{subsection:skeletontracking:physics}
 
+Combining real-world physics with virtual physics requires some special consideration. Without special hardware, nothing that happens physically in the virtual world can affect how the user behaves in the real world, while real-world physics are always present in kinect-controlled motion: The floor and objects restrict movement, gravity affects the user's behavior, etc. Therefore, it is important to specify the wanted physical relationship for each application on a case-by-case basis. Also, in order to work around the limitations that the Kinect tracking imposes on the physical interaction, some precautions will have to be taken.
+
+
+
 \section{Wand Controllers}
 \label{section:wandcontrollers}
 
