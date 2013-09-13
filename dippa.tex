@@ -742,7 +742,7 @@ Supporting the whole plethora of user-made humanoid models available is a big un
 
 Armatures are tree-based bone structures that control the deformation of the model mesh. Each mesh vertex has a number of bone weights, which determine the bones that affect the position of the vertex and by which strenghts. To move different parts of the model, the armature bones will therefore have to be controlled. To control a model using Kinect, we created a component called RUISSkeletonController, which takes in skeleton data and uses it to control bones in a model. Basically RUISSkeletonController is just a link that copies and translates transforms from one place, RUISSkeletonManager, to the other, the armature.
 
-This approach, however, works directly only for non-hierarchical armatures, since the data within RUISSkeletonManager is non-hierarchical. RUISSkeletonController therefore translates these positions and rotations into a hierarchical version by making the assumption that the structure of the armature follows the structure outlined in figure \ref{fig:skeletontreestructure}.
+This approach, however, works directly only for non-hierarchical armatures, since the data within RUISSkeletonManager is non-hierarchical. RUISSkeletonController therefore translates these positions and rotations into a hierarchical version by making the assumption that the structure of the armature follows the structure outlined in figure \ref{fig:skeletontreestructure}. 
 
 \begin{figure}
     \label{fig:skeletontreestructure}
