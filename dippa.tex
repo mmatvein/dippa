@@ -629,17 +629,15 @@ Several external libraries and frameworks were used in the development of RUIS, 
 
 RUIS uses OpenNI \hl{OpenNI site} as its skeletal tracking library. OpenNI is an open-source framework used for developing applications featuring natural bodily interaction. In the case of RUIS, OpenNI is used in tandem with the NiTE middleware libraries \hl{NiTE site}. NiTE extracts the skeletal data and RUIS references it through the OpenNI Unity Wrapper. 
 
+\hl{more, primesense drivers for xtion and kinect etc.}
+
 \subsection{Oculus SDK}
 \label{subsection:external:oculussdk}
 
 \subsection{Other}
 \label{subsection:external:other}
 
-RUIS uses some additional libraries to interface with input systems. To communicate with the Move.Me server we integrated PSMoveWrapper \cite{PSMoveWrapper}, with some minor modifications. Most of the functionality in PSMoveWrapper is further wrapped by separate RUIS components. For Razer Hydra \cite{RazerHydra}, RUIS uses the
-
-\hl{Razer Hydra} \\
-
-Finally, RUIS uses CSML, the C Sharp Matrix Library for basic matrix manipulations and calculations. It is used for example to calculate the transformation matrix between the Kinect and PS Move coordinate systems.
+RUIS uses some additional libraries to interface with input systems. To communicate with the Move.Me server we integrated PSMoveWrapper \cite{PSMoveWrapper}, with some minor modifications. Most of the functionality in PSMoveWrapper is further wrapped by separate RUIS components. For Razer Hydra \cite{RazerHydra}, RUIS uses the Sixense Unity Plug-in \cite{RazerUnityPlugin}. Finally, RUIS uses CSML, the C Sharp Matrix Library for basic matrix manipulations and calculations. It is used for example to calculate the transformation matrix between the Kinect and PS Move coordinate systems.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
