@@ -738,6 +738,15 @@ To display a virtual character that matches the real-world movements of the user
 \subsection{Using Premade Models and Armatures}
 \label{subsection:skeletontracking:premademodels}
 
+Supporting the whole plethora of user-made humanoid models available is a big undertaking. There is no set-in-stone standard that all armatures adhere to, so in the implementation of RUIS we make certain assumptions of the structure of the model.
+
+Armatures are tree-based bone structures that control the deformation of the model mesh. Each mesh vertex has a number of bone weights, which determine the bones that affect the position of the vertex and by which strenghts. To move different parts of the model, the armature bones will therefore have to be controlled. To control a model using Kinect, we created a component called RUISSkeletonController, which takes in skeleton data and uses it to control bones in a model. Basically RUISSkeletonController is just a link that copies and translates transforms from one place, RUISSkeletonManager, to the other, the armature.
+
+This approach, however, works directly only for non-hierarchical armatures, since the data within RUISSkeletonManager is non-hierarchical. RUISSkeletonController therefore translates these positions and rotations into a hierarchical version by making the assumption that the structure of the armature follows the structure outlined in figure \ref{fig:skeletontreestructure}.
+
+\begin{figure}
+    \label{fig:skeletontreestructure}
+\end{figure}
 Hierarchical models
 
 Scaling bones
