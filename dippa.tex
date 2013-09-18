@@ -572,6 +572,7 @@ This chapter briefly discusses the history of virtual reality and how it has com
 \section{Motion controllers}
 \label{section:motioncontrollers}
 
+\hl{some examples of older motion tracking systems}
 
 
 \subsection{Depth-sensing Cameras}
@@ -678,7 +679,9 @@ Once the basic framework for multiple displays is in place, it is quite straight
 
 In addition to the Unity3D Camera attached to the RUISCamera, two new GameObjects with the Camera script will have to be added underneath it: the left and right eye cameras. The Camera script attached to the parent GameObject is treated as the monoscopic camera, while the left and right cameras are used for stereoscopic rendering. The RUISCamera script will then reference all these three Camera scripts and enable them based on whether the display rendered to is mono or stereo. 
 
+The most straightforward way to assign the left and right cameras the correct viewport rectangle is to just halve the rectangle of the center camera. The user makes a decision in which direction he wants to separate the eyes, side-by-side or top-and-bottom, based on the settings of the display device. After disabling the center camera and enabling the left and right cameras both images will render correctly in order for the display device to display a stereoscopic image.
 
+The last part in setting up a correct stereoscopic view is configuring the cameras to be at the correct positions. The eye separation, or interpupillary distance (IPD), will have to be set to a value that suits the user. 
 
 \section{Perspective Projection for a Head-Tracked View}
 \label{section:perspectiveprojection}
