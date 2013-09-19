@@ -766,6 +766,12 @@ Damping
 
 Combining real-world physics with virtual physics requires some special consideration. Without special hardware, nothing that happens physically in the virtual world can affect how the user behaves in the real world, while real-world physics are always present in kinect-controlled motion: The floor and objects restrict movement, gravity affects the user's behavior, etc. Therefore, it is important to specify the wanted physical relationship for each application on a case-by-case basis. Also, in order to work around the limitations that the Kinect tracking imposes on the physical interaction, some precautions will have to be taken.
 
+In a perfect world the Kinect-controlled character would be able to interact with the virtual world physically just by adding colliders to every body part of the model. The most rudimentary versions of the RUISSkeletonController enabled prefabs do exactly this. The avatar is a kinematic Unity3D Rigidbody that interacts with the environment but the environment does not affect the way the character moves. This is pretty intuitive behavior, since this way the avatar always matches your real body. The problem with this approach becomes apparent though, when we want the character to for example respect boundaries such as walls, follow the contours of uneven terrain or even fall down from cliffs.
+
+To achieve such behavior, the avatar Rigidbody will have to be made non-kinematic. This opens up a whole new world of issues to deal with, though, since now the environment affects character movements directly.
+
+The data received from the skeleton tracking system is very noisy, which means that any real-time game physics system cannot use this data without experiencing some kind of jitter and unexpected behavior. The most straightforward way to lessen the impact of noise in this situation is to dampen changes between input frames. Movements will become more smooth, but on the other hand they will be even more unresponsive. With the inherent lag of the whole Kinect processing chain, one has to be very wary about introducing even more delay into the motion.
+
 
 
 \section{Wand Controllers}
@@ -781,7 +787,6 @@ Combining real-world physics with virtual physics requires some special consider
 \label{subsection:wadcontrollers:skeleton}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -792,8 +797,12 @@ Combining real-world physics with virtual physics requires some special consider
 \section{Final Toolkit}
 \label{section:finaltoolkit}
 
-\section{RUIS on the T-111.5400 Virtual Reality Course}
+\section{RUIS on the T-111.5400 Virtual Reality P Course}
 \label{section:vrcourse}
+
+Each Spring the Department of Media Technology organizes the course T-111.5400 Virtual Reality P. The purpose of the course is to familiarize students with the challenges inherent in designing virtual reality applications. The earlier iterations of this course have used the Processing version of RUIS, but this Spring the course migrated to the Unity3D version. 
+
+\hl{some data from course questionnaire? comparison with old versions of the course}
 
 \section{TurboTuscany}
 \label{section:turbotuscany}
