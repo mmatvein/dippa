@@ -752,11 +752,11 @@ This approach, however, works directly only for non-hierarchical armatures, sinc
     \label{fig:skeletontreestructure}
 \end{figure}
 
-Scaling the armature bones to the correct lengths is a relatively straightforward process: For each bone to be scaled, a multiplier is applied to the local scale of the bone to make it the correct size. In hierarchical models these local scales will also scale the children of the bone, so this effect will have to be negated in the scales of the children. Making the same structure assumption as in the previous phase, the easiest way to achieve the correct armature scale is to first scale the torso to the correct size. After this each limb is scaled separately by starting at the root of the limb. The scale of the forearm is for example calculated as follows:
+Scaling the armature bones to the correct lengths is a relatively straightforward process: For each bone to be scaled, a multiplier is applied to the local scale of the bone to make it the correct size. In hierarchical models these local scales will also scale the children of the bone, so this effect will have to be negated in the scales of the children. Making the same structure assumption as in the previous phase, the easiest way to achieve the correct armature scale is to first scale the torso to the correct size. After this each limb is scaled separately by starting at the root of the limb. An example of the final calculation for the scale of the forearm is calculated as in \ref{eq:forearmscale}. 
 
 \begin{equation}
     \label{eq:forearmscale}
-    SoF_new = SoF_original * (1 / (scale_torso * scale_upperarm))
+    SoF_{new} = SoF_{original} * (1 / (scale_{torso} * scale_{upperarm}))
 \end{equation}
 
 Scaling bones
