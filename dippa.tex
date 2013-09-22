@@ -745,25 +745,24 @@ Supporting the whole plethora of user-made humanoid models available is a big un
 
 Armatures are tree-based bone structures that control the deformation of the model mesh. Each mesh vertex has a number of bone weights, which determine the bones that affect the position of the vertex and by which strenghts. To move different parts of the model, the armature bones will therefore have to be controlled. To control a model using Kinect, we created a component called RUISSkeletonController, which takes in skeleton data and uses it to control bones in a model. Basically RUISSkeletonController is just a link that copies and translates transforms from one place, RUISSkeletonManager, to the other, the armature.
 
-This approach, however, works directly only for non-hierarchical armatures, since the data within RUISSkeletonManager is non-hierarchical. RUISSkeletonController therefore translates these positions and rotations into a hierarchical version by making the assumption that the structure of the armature follows the structure outlined in figure \ref{fig:skeletontreestructure}. All rotations are set to be correct in the global coordinate system, when compared to the skeleton torso joint. For hierarchical models, the local positions of bones will not have to be set, since transformations propagate through the armature. On the other hand, in custom-made models and armatures the bone lengths will most likely not match the real users' bone lengths, so the joint positions will be incorrect. For this reason, the bones will have to be scaled to match their real counterparts.
+This approach, however, works directly only for non-hierarchical armatures, since the data within RUISSkeletonManager is non-hierarchical. RUISSkeletonController therefore translates these positions and rotations into a hierarchical version by making the assumption that the structure of the armature follows the structure outlined in figure \ref{fig:skeletontreestructure}. All rotations are set to be correct in the global coordinate system, when compared to the skeleton torso joint. For hierarchical models, the local positions of bones will not have to be set, since transformations propagate through the armature. On the other hand, in custom made models and armatures the bone lengths will most likely not match the real users' bone lengths, so the joint positions will be incorrect. For this reason, the bones will have to be scaled to match their real counterparts.
 
 \hl{skeletontreestructure figure}
 \begin{figure}
     \label{fig:skeletontreestructure}
 \end{figure}
 
-Scaling the armature bones to the correct lengths is a relatively straightforward process: For each bone to be scaled, a multiplier is applied to the local scale of the bone to make it the correct size. In hierarchical models these local scales will also scale the children of the bone, so this effect will have to be negated in the scales of the children. Making the same structure assumption as in the previous phase, the easiest way to achieve the correct armature scale is to first scale the torso to the correct size. After this each limb is scaled separately by starting at the root of the limb. An example of the final calculation for the scale of the forearm is calculated as in \ref{eq:forearmscale}. 
+Scaling the armature bones to the correct lengths is a relatively straightforward process: For each bone to be scaled, a multiplier is applied to the local scale of the bone to make it the correct size. In hierarchical models these local scales will also scale the children of the bone, so this effect will have to be negated in the scales of the children. Making the same structure assumption as in the previous phase, the easiest way to achieve the correct armature scale is to first scale the torso to the correct size. After this each limb is scaled separately by starting at the root of the limb. \hl{torso scaling process, width between hip joints as correct scale} An example of the final calculation for the scale of the forearm is calculated as in \ref{eq:forearmscale}. 
 
+\hl{make prettier}
 \begin{equation}
     \label{eq:forearmscale}
-    SoF_{new} = SoF_{original} * (\frac{1}{scale_{torso} * scale_{upperarm}})
+    SoF_{new} = \frac{SoF_{user}}{SoF_{original}} * \frac{1}{scale_{torso} * scale_{upperarm}}
 \end{equation}
 
-Scaling bones
+Even the scaling process does not always fix all the joints to be in the exact same positions as the user's joints. Small changes in the armature setup, such as the armature's shoulders being made of two bones, a clavicle bone and an upper arm bone, instead of just one like in the Kinect skeleton. \hl{neck height, forearm length, scaling hands}
 
-Fine-tuning the model
-
-Damping
+As a final touch, everything can be smoothed out by applying some damping to the raw rotations given by the skeleton manager. The OpenNI system applies some filtering to the skeleton, but this is oftentimes not enough to get rid of all the jitter. We have therefore implemented simple clamping of the maximum change per second for rotations and scales.
 
 \subsection{Combining Kinect and Mecanim}
 \label{subsection:skeletontracking:kinectandmecanim}
