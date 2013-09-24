@@ -686,6 +686,10 @@ The last part in setting up a correct stereoscopic view is configuring the camer
 \section{Perspective Projection for a Head-Tracked View}
 \label{section:perspectiveprojection}
 
+In CAVE and non-HMD systems a big part of the depth effect and positional awareness comes from moving the head in relation to the display. If the image on the screen stays static, the effect is obviously very small. By adding head tracking and shifting the viewpoint with the head, a new level of depth is achieved. Even this results in a relatively flat image, though. To take the effect even further, the projection matrix used for the cameras can be modified to make the display or projector screen seem like a window to the virtual world. This effect is demonstrated well in Lee's \cite{JohnnyLeePerspective} video on the subject. The projection matrix has to be modified so that the frustum edges from each eye match the corresponding display edges. This requires knowledge of both the eye locations as well as the display location in tracker coordinates.
+
+\hl{image of frustum getting skewed}
+
 
 
 \section{Projector Keystoning Correction}
@@ -704,6 +708,8 @@ Separate from all of the previous functinality is the Oculus Rift. Applications 
 
 \chapter{Input Management}
 \label{chapter:inputmanagement}
+
+The second big subsystem of RUIS is the input manager. It takes care of all the chores related to using the multitude of input systems RUIS uses, leaving only the implementation of application specific functionality to the user.
 
 \section{Coordinate Systems}
 \label{section:coordinatesystem}
@@ -731,7 +737,7 @@ Also, the real-world floor location and normal are found during the calibration 
 \subsection{Controlling Virtual Characters}
 \label{subsection:coordinatesystems:virtualcharacters}
 
-When moving virtual characters it is important to differentiate which coordinate system the character will be moved in. In addition to the local and global coordinates of the game object itself, we have to take tracker coordinates into account.
+When moving virtual characters it is important to differentiate which coordinate system the character will be moved in. In addition to the local and global coordinates of the game object itself, we have to take tracker coordinates into account. For example when calculating projection matrixes for head tracked views, the matrix is calculated using the eyes' positions relative to the real-world coordinates of the screen. 
 
 \section{Skeleton Tracking and Character Animation}
 \label{section:skeletontracking}
