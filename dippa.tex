@@ -686,11 +686,11 @@ The last part in setting up a correct stereoscopic view is configuring the camer
 \section{Perspective Projection for a Head-Tracked View}
 \label{section:perspectiveprojection}
 
-In CAVE and non-HMD systems a big part of the depth effect and positional awareness comes from moving the head in relation to the display. If the image on the screen stays static, the effect is obviously very small. By adding head tracking and shifting the viewpoint with the head, a new level of depth is achieved. Even this results in a relatively flat image, though. To take the effect even further, the projection matrix used for the cameras can be modified to make the display or projector screen seem like a window to the virtual world. This effect is demonstrated well in Lee's \cite{JohnnyLeePerspective} video on the subject. The projection matrix has to be modified so that the frustum edges from each eye match the corresponding display edges. This requires knowledge of both the eye locations as well as the display location in tracker coordinates.
+In CAVE and non-HMD systems a big part of the depth effect and positional awareness comes from moving the head in relation to the display. If the image on the screen stays static, the effect is non-existent and the screen will look like a picture frame. By adding head tracking and shifting the viewpoint with the head, a new level of depth is achieved. Even this results in a relatively flat image, though. To take the effect even further, the projection matrix used for the cameras can be modified to make the display or projector screen seem like a window to the virtual world. This effect is demonstrated well in Lee's \cite{JohnnyLeePerspective} video on the subject. The projection matrix has to be modified so that the frustum edges from each eye match the corresponding display edges. This requires knowledge of both the eye locations as well as the display location in tracker coordinates.
 
 \hl{image of frustum getting skewed}
 
-
+\hl{start writing about stuff in the paper about head-tracked views}
 
 \section{Projector Keystoning Correction}
 \label{section:keystonecorrection}
@@ -772,6 +772,12 @@ As a final touch, everything can be smoothed out by applying some damping to the
 
 \subsection{Combining Kinect and Mecanim}
 \label{subsection:skeletontracking:kinectandmecanim}
+
+In many cases the application developer might want to add some pre-made animation to the avatar to make the world seem more vibrant. This can range from simple walk cycles to complex death animations. Unfortunately Unity3D's Mecanim system does not have its own system for blending procedural animation, i.e. our Kinect data, with animations made in animation software. Therefore we have had to bridge this gap by creating our own animation blender that mixes these animations together based on the user preferences. 
+
+Mecanim, introduced in Unity 4, is a state-machine based animation system that lets the developer mix and match animations attached to an avatar by controlling custom parameters. In the most simple case this can be done just by creating a state machine with one state, for example an idle animation. This system can then be built upon by adding different animation layers for the lower and upper body, separate animations for walking in different directions, etc. The blend factors of all of these animations can then be controlled by using the parameters fed to the animator system. 
+
+The approach we take in RUIS is to leave the Mecanim process alone and only use the end result as something to blend with the animations coming from Kinect. This way, the user can create a complex system of hard-coded animations, on top of which he can add Kinect animations whenever he wants to. 
 
 \subsection{Adding Physics to a Kinect-Controlled Virtual Character}
 \label{subsection:skeletontracking:physics}
