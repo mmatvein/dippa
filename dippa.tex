@@ -828,10 +828,24 @@ One difficulty we faced with the version of PSMoveWrapper we used was that the W
 \subsection{Skeleton Wand}
 \label{subsection:wandcontrollers:skeleton}
 
+By using the gesture system outlined in \ref{subsection:skeletontracking:gestures}, we created a simple way for the user to point at and select objects by using Kinect only. The skeleton wand emulates wand functionality by creating the wand pointer ray from the user's forearm and using a hold gesture to track selection. 
+
 \subsection{Selecting Objects}
 \label{subsection:wandcontrollers:selection}
 
+One of the most basic ways to interact with the virtual environment with a wand controller is to use it to point at objects and select them. In RUIS we implement this functionality by introducing two components, RUISWandSelector and RUISSelectable, which are attached to the wand and the object to be selected, respectively. As an overview, the wand selector component constantly casts rays to check whether a selectable object is in front of the wand selection ray. If the user then presses the selection button, or signals the intent to select in another way, the object is selected and it starts following the wand's movements. First, I will discuss the necessary groundwork this requires on the wand's side, after which I will go into more detail regarding the behavior of the selected object.
 
+RUISWand provides a common interface for RUISWandSelector to use no matter which type of wand implements the functionality itself. This way, we can leave the implementation details to the wands themselves, while focusing on the selection process itself. The two main pieces of information needed for selection are the wand transform and the selection button state. Both of these are provided by RUISWand.
+
+Each Update, the RUISWandSelector script checks whether something is in front of its selection ray using one of two methods for creating the ray. The first ray creation method is just to shoot a ray from the tip of the wand to the direction it points at. Using this method, the ray is just created with the transform of the wand. The second method requires the head position in addition to the wand transform: The selection ray is formed from the line between the head and wand positions. This type of wand selection is useful in use cases that for example use movements close to archery.
+
+Once we have created the selection ray, we use Unity's Physics class to raycast to look for colliders that intersect the selection ray. The first applicable collider, meaning that it isn't on one of the layers that should be ignored, is then returned for further processing. At the raycast stage no difference is made between objects that have the RUISSelectable script attached and objects that don't. This way we achieve the natural functionality that for example walls block selection rays - you cannot select something you cannot see.
+
+The selection candidate object returned by the raycast is then searched for the RUISSelectable script, to ascertain whether it is selectable or not. This process comes with a caveat, though, since selectable objects can be comprised of multiple colliders in a collider hierarchy. Unity's raycast returns the collider GameObject instead of the topmost object in the hierarchy. This means that to figure out whether the object is selectable, we have to go upwards through the hierarchy to find out if the RUISSelectable script can be found on any of the collider object's ancestors. If any of the ancestors have this script, the object is selectable. If the RUISSelectable script cannot be found anywhere in this hierarchy, the object should be ignored.
+
+Once an object has been marked as selectable, we highlight it visually to show the user that the object can be interacted with. I will explain this more thoroughly soon, when detailing the RUISSelectable implementation details. After highlighting the object as a selectable object, we check whether the selection button was actually pressed.
+
+In RUIS we have implemented different styles of selection actions, so the user has some choice when developing his application.  
 
 \subsection{Head Tracking}
 \label{subsection:wandcontrollers:headtracking}
