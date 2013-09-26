@@ -815,12 +815,18 @@ The data received from the skeleton tracking system is very noisy, which means t
 \subsection{PlayStation Move}
 \label{subsection:wandcontrollers:psmove}
 
+The main wand controller RUIS has used from the beginning is the PS Move. It provides accurate tracking with a relatively low latency. To use Move controllers, however, is not as straightforward as it could be, because of Sony's limitations on the tracking software. Currently, the only way to properly use the full functionality of the PS Move controllers is to use a PlayStation 3 console and its Move.me application. This application then acts as a server to which applications can connect via TCP/IP. Some attempts have been made to create open source tracking software for the PC, but Sony's software's sophistication has made it very hard to replicate all the functionality accurately.
+
+To connect to the Move.me server we use PSMoveWrapper, a 
+
 \subsection{Razer Hydra}
 \label{subsection:wandcontrollers:hydra}
 
 \subsection{Skeleton Wand}
 \label{subsection:wadcontrollers:skeleton}
 
+\subsection{Head Tracking}
+\label{subsection:wandcontrollers:headtracking}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
