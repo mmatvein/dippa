@@ -807,7 +807,8 @@ One thing we do is to disable all rotations on the x- and z-axes. This way the p
 
 The data received from the skeleton tracking system is very noisy, which means that any real-time game physics system cannot use this data without experiencing some kind of jitter and unexpected behavior. The most straightforward way to lessen the impact of noise in this situation is to dampen changes between input frames. Movements will become more smooth, but on the other hand they will be even more unresponsive. With the inherent lag of the whole Kinect processing chain, one has to be very wary about introducing even more delay into the motion.
 
-
+\subsection{Tracking Gestures}
+\label{subsection:skeletontracking:gestures}
 
 \section{Wand Controllers}
 \label{section:wandcontrollers}
@@ -815,15 +816,22 @@ The data received from the skeleton tracking system is very noisy, which means t
 \subsection{PlayStation Move}
 \label{subsection:wandcontrollers:psmove}
 
-The main wand controller RUIS has used from the beginning is the PS Move. It provides accurate tracking with a relatively low latency. To use Move controllers, however, is not as straightforward as it could be, because of Sony's limitations on the tracking software. Currently, the only way to properly use the full functionality of the PS Move controllers is to use a PlayStation 3 console and its Move.me application. This application then acts as a server to which applications can connect via TCP/IP. Some attempts have been made to create open source tracking software for the PC, but Sony's software's sophistication has made it very hard to replicate all the functionality accurately.
+The main wand controller RUIS has used from the beginning is the PS Move. It provides accurate tracking with a relatively low latency. To use Move controllers, however, is not as straightforward as it could be, because of Sony's limitations on the tracking software. Currently, the only way to properly use the full functionality of the PS Move controllers is to use a PlayStation 3 console and its Move.me application. This application then acts as a server to which applications can connect via TCP and UDP. Some attempts have been made to create open source tracking software for the PC, but Sony's software's sophistication has made it very hard to replicate all the functionality accurately.
 
-To connect to the Move.me server we use PSMoveWrapper, a 
+To connect to the Move.me server we use PSMoveWrapper \cite{PSMoveWrapper}, a networking library that implements all the necessary network functionality to use the full features of the Move controllers. On top of this library we created the class RUISPSMoveWand, inheriting from RUISWand, to encapsulate all the relevant features. This way we can for example control which coordinate system the positional data is given in.
+
+One difficulty we faced with the version of PSMoveWrapper we used was that the WasPressed and WasReleased functions, used to check whether a button has been pressed since the last frame, only worked for the first call made to them during an update cycle. This is unwanted behavior and would result in many hard-to-find bugs for users - they would have to read the PSMoveWrapper source code to find out what is happening. We fixed this problem by restructuring the functions so that they return correct values for the whole update cycle.
 
 \subsection{Razer Hydra}
 \label{subsection:wandcontrollers:hydra}
 
 \subsection{Skeleton Wand}
-\label{subsection:wadcontrollers:skeleton}
+\label{subsection:wandcontrollers:skeleton}
+
+\subsection{Selecting Objects}
+\label{subsection:wandcontrollers:selection}
+
+
 
 \subsection{Head Tracking}
 \label{subsection:wandcontrollers:headtracking}
