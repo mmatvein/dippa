@@ -845,7 +845,13 @@ The selection candidate object returned by the raycast is then searched for the 
 
 Once an object has been marked as selectable, we highlight it visually to show the user that the object can be interacted with. I will explain this more thoroughly soon, when detailing the RUISSelectable implementation details. After highlighting the object as a selectable object, we check whether the selection button was actually pressed.
 
-In RUIS we have implemented different styles of selection actions, so the user has some choice when developing his application.  
+In RUIS we have implemented different styles of selection actions, so the user has some choice when developing his application. The main choice is whether to select by toggle selecting, by tapping the button, or to grab select, by holding the button down. In addition to this, we have implemented the possibility to press the selection button down when nothing is highlighted and sweeping over the object to be selected, which helps in selecting small objects.
+
+The difference between toggle and grab selection comes into play when the selection button gets released. If grab selection is specified, the button release event should also release the selection, while for toggle events a second button press is required. For toggle events the first button release therefore just sets a local variable that keeps track that the object can actually be released. Once a second selection button release is detected, the object is let go. 
+
+For skeleton wand selection this dependency on press and release events poses an interesting question. What if the selection method is not a button, but a triggered event that does not have an intuitive press and release signal? For this functionality we have included the IsSelectionButtonStandard function in RUISWand. By querying this function RUISWandSelector can check whether the selection functions are actually fired by the press of a real button, or just emulated with for example gestures. If the selection button is found to be non-standard, RUISWandSelector can just refrain from using the SelectionButtonWasReleased function and rely only on the triggered press event. This concludes the wand side of the selection process.
+
+Each selectable object needs to have the RUISSelectable component added to it.
 
 \subsection{Head Tracking}
 \label{subsection:wandcontrollers:headtracking}
