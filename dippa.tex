@@ -851,7 +851,13 @@ The difference between toggle and grab selection comes into play when the select
 
 For skeleton wand selection this dependency on press and release events poses an interesting question. What if the selection method is not a button, but a triggered event that does not have an intuitive press and release signal? For this functionality we have included the IsSelectionButtonStandard function in RUISWand. By querying this function RUISWandSelector can check whether the selection functions are actually fired by the press of a real button, or just emulated with for example gestures. If the selection button is found to be non-standard, RUISWandSelector can just refrain from using the SelectionButtonWasReleased function and rely only on the triggered press event. This concludes the wand side of the selection process.
 
-Each selectable object needs to have the RUISSelectable component added to it.
+To mark an object as selectable, the object needs to have the RUISSelectable component added to it. This way the RUISWandSelector script is able to highlight and select the object. While the selection itself is handled on the wand's end, the effects of both highlight and selection are done for each selectable in the RUISSelectable script. These effects are showing the highlight visually and handling the movement of the object. 
+
+To show the highlight graphically, some modification will have to be made to the materials of the object. We decided to take the least invasive route and add a new highlight material on top of the material stack of the object. The material used for this can be specified by the user, but as a default we use a translucent green material. When the wand selector sends the highlight start event to the RUISSelectable script, we add the specified material to the end of the material list. Conversely, at the end of the highlight we remove the last element of the material list. For this method to work, no other script should be able to modify the material list of the object. This method also requires the user to create the material specifications, mainly which material affects which part of the model, in a way that shows the highlight properly. In many cases models downloaded off the web will not work directly with the highlight system - the last material in the stack might for example only affect the legs of a chair instead of the whole model. In RUIS we use the same method to also display object selection. In that case the object is shown by default with a translucent red material overlaid on top.
+
+To handle the movements of the object, two cases will have to be considered: what the object does when it is selected and how it will behave once the selection has ended. 
+
+
 
 \subsection{Head Tracking}
 \label{subsection:wandcontrollers:headtracking}
