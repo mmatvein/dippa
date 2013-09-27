@@ -831,6 +831,10 @@ For object selection using Kinect we wanted to create a simple gesture that woul
 
 When creating our final demo, detailed in section \ref{section:turbotuscany}, we also needed a gesture to signal that the character should jump. The most obvious choice to implement this is a jump gesture. At first, we tried to implement the gesture by tracking only the center of mass. Our plan was to detect the whole jump movement, which consists of a small dip and an explosive movement upwards, instead of just the upwards movement. By using this kind of gesture detection we were able to catch a major part of the gestures, but this solution still resulted in a lot of missed activations and false positives. The user can for example be crouched, after which jump dynamics are very different. Our second version, the final one now in use, works better by still using the center of mass to track the upwards movement, dropping the requirement of the downwards dip. In addition to this upwards velocity requirement we add the condition that both feet should be off the ground, above some threshold. In practice this last requirement helped get rid of the false positives, while dropping off the downwards movement from the movement recognition helped detect gestures more easily.
 
+For both the hold and jump gestures, an important factor to take into consideration is to allow enough configurability, so that the user can tweak parameters to mold the gestures to work as well as possible in the application. In different applications a different hold length might for example be appropriate. This is something we took into account from the beginning, since Unity3D's user interface encourages exposing variables for editing directly inside the editor.
+
+\hl{something about the hold gesture visualizer?}
+
 \section{Wand Controllers}
 \label{section:wandcontrollers}
 
