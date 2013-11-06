@@ -708,13 +708,15 @@ In CAVE and non-HMD systems a big part of the depth effect and positional awaren
 
 Akenine-Möller et al. \cite{RTR3} define the basic perspective projection matrix P \ref{matrix:basicperspective}, where n, f, t, b, r and l are the near, far, top, bottom, right and left planes, respectively. This matrix, when applied to a point p, transforms the p into normalized device coordinates. Finally, to get the final projected point on the near plane, p will have to be divided by its w coordinate - the fourth component.
 
+\begin{figure}
+\label{matrix:basicperspective}
 P = \begin{pmatrix}
-  \label{matrix:basicperspective}
   \frac{2n}{r-l} & 0 & - \frac{r+l}{r-l} & 0\\
   0 & \frac{2n}{t-b} & - \frac{t+b}{t-b} & 0 \\
   0 & 0 & \frac{f+n}{f-n} & - \frac{2fn}{f-n} \\
   0 & 0 & 1 & 0
  \end{pmatrix}
+ \end{figure}
  
 \hl{image of frustum getting skewed}
 
