@@ -709,9 +709,10 @@ In CAVE and non-HMD systems a big part of the depth effect and positional awaren
 Akenine-Möller et al. \cite{RTR3} define the basic perspective projection matrix P as:
 
 P = \begin{pmatrix}
-  a & b & c \\
-  d & e & f \\
-  g & h & i
+  2n / r-l & 0 & - r+l / r-l & 0\\
+  0 & 2n / t-b & - t+b / t-b & 0 \\
+  0 & 0 & f+n/f-n & -2fn/f-n \\
+  0 & 0 & 1 & 0
  \end{pmatrix}
  
 \hl{image of frustum getting skewed}
