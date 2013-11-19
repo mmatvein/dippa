@@ -709,11 +709,11 @@ In CAVE and non-HMD systems a big part of the depth effect and positional awaren
 
 \hl{image of frustum getting skewed}
 
-Akenine-Möller et al. \cite{RTR3} define the basic perspective projection matrix P in equation \eqref{matrix:basicperspective}, where n, f, t, b, r and l are the near, far, top, bottom, right and left planes, respectively. This matrix, when applied to a point p, transforms the p into normalized device coordinates. Finally, to get the final projected point on the near plane, p will have to be divided by its w coordinate - the fourth component.
+Akenine-Möller et al. \cite{RTR3} define the basic perspective projection matrix $P_p$ in equation \eqref{matrix:basicperspective}, where $n$, $f$, $t$, $b$, $r$ and $l$ are the near, far, top, bottom, right and left planes, respectively. This matrix, when applied to a point $p$, transforms $p$ into normalized device coordinates. Finally, to get the final projected point $q$ on the near plane, $p$ will have to be divided by its $w$ coordinate - the fourth component: $q = (p_x/w, p_y/w, p_z/w)$.
 
 \begin{equation}
 \label{matrix:basicperspective}
-P = \begin{pmatrix}
+P_p = \begin{pmatrix}
   \frac{2n}{r-l} & 0 & \frac{r+l}{r-l} & 0 \\[0.3em]
   0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\[0.3em]
   0 & 0 & \frac{f+n}{f-n} & - \frac{2fn}{f-n} \\[0.3em]
@@ -721,9 +721,9 @@ P = \begin{pmatrix}
  \end{pmatrix}.
  \end{equation}
  
-In the general use case, the projection is centered, meaning that r = -l and t = -b. To create oblique frustums, the kind of frustums used in head-tracked views, these values will have to be calculated based on the positions of the eyes relative to the final display surface. Kooima \cite{KooimaPerspective} introduces the mathematics behind these calculations. For the calculation of the right, left, top and bottom planes, a set of points have to be specified, defining the boundaries of the frustum. For the display surface, which in Kooima's method is assumed to be rectangular, three corner points will be needed: bottom left, p\textsubscript{a}; bottom right, p\textsubscript{b}; and top left, p\textsubscript{c}. These points are then used to construct an orthonormal base for the display surface. In RUIS, a display surface is specified by the display normal, v\textsubscript{n}; the display up vector, v\textsubscript{u}; and the display width, height and center. We feel this is an easier way to specify display coordinates, even though it requires more input from the user. The coordinates for the display corners (p\textsubscript{a}, p\textsubscript{b}, p\textsubscript{c}) are then calculated using the user specified values. In addition to the aforementioned points, the eye location p\textsubscript{e} is also required to compute the extents of the frustum.
+In the general use case, the projection is centered, meaning that $r = -l$ and $t = -b$. To create oblique frustums, the kind of frustums used in head-tracked views, these values will have to be calculated based on the positions of the eyes relative to the final display surface. Kooima \cite{KooimaPerspective} introduces the mathematics behind these calculations. For the calculation of the right, left, top and bottom planes, a set of points have to be specified, defining the boundaries of the frustum. For the display surface, which in Kooima's method is assumed to be rectangular, three corner points will be needed: bottom left, $p_a$; bottom right, $p_b$; and top left, $p_c$. These points are then used to construct an orthonormal base for the display surface. In RUIS, a display surface is specified by the display normal, $v_n$; the display up vector, $v_u$; and the display width, height and center. We feel this is an easier way to specify display coordinates, even though it requires more input from the user. The coordinates for the display corners ($p_a$, $p_b$, $p_c$) are then calculated using the user specified values. In addition to the aforementioned points, the eye location $p_e$ is also required to compute the extents of the frustum.
 
-According to Kooima, the following intermediary values are to be calculated in order to get to the final $r$, $l$, $t$ and $b$ values: $v_a$, $v_b$ and $v_c$, the vectors from the eye location to the display corners and d, the distance from the eye to the display. These values are computed with the equations \eqref{equation:perspectiveintermediary}-\eqref{equation:perspectiveintermediarylast}.
+According to Kooima, the following intermediary values are to be calculated in order to get to the final $r$, $l$, $t$ and $b$ values: the vectors from the eye location to the display corners $v_a$, $v_b$ and $v_c$, and the distance from the eye to the display, $d$. These values are computed with the equations \eqref{equation:perspectiveintermediary}-\eqref{equation:perspectiveintermediarylast}.
 
 \begin{align} \label{equation:perspectiveintermediary}
     v_a& = p_a - p_e, \\
