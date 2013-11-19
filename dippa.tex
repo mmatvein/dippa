@@ -718,7 +718,7 @@ P_p = \begin{pmatrix}
   0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\[0.3em]
   0 & 0 & \frac{f+n}{f-n} & - \frac{2fn}{f-n} \\[0.3em]
   0 & 0 & 1 & 0
- \end{pmatrix}.
+ \end{pmatrix}
  \end{equation}
  
 In the general use case, the projection is centered, meaning that $r = -l$ and $t = -b$. To create oblique frustums, the kind of frustums used in head-tracked views, these values will have to be calculated based on the positions of the eyes relative to the final display surface. Kooima \cite{KooimaPerspective} introduces the mathematics behind these calculations. For the calculation of the right, left, top and bottom planes, a set of points have to be specified, defining the boundaries of the frustum. For the display surface, which in Kooima's method is assumed to be rectangular, three corner points will be needed: bottom left, $p_a$; bottom right, $p_b$; and top left, $p_c$. These points are then used to construct an orthonormal base for the display surface. In RUIS, a display surface is specified by the display normal, $v_n$; the display up vector, $v_u$; and the display width, height and center. We feel this is an easier way to specify display coordinates, even though it requires more input from the user. The coordinates for the display corners ($p_a$, $p_b$, $p_c$) are then calculated using the user specified values. In addition to the aforementioned points, the eye location $p_e$ is also required to compute the extents of the frustum.
@@ -732,7 +732,7 @@ According to Kooima, the following intermediary values are to be calculated in o
     d& = -(v_a \cdot v_n) 
 \end{align}
 
-Using these intermediary values, the final equations to calculate $r$, $l$, $t$ and $b$ take the form shown in equations \eqref{equation:perspectivefinal}-\eqref{equation:perspectivefinallast}. Each dot product is scaled by the value $n/d$, because the frustum planes are specified on the near plane $n$.
+Using these intermediary values, the final equations to calculate $r$, $l$, $t$ and $b$ take the form shown in equations \eqref{equation:perspectivefinal}-\eqref{equation:perspectivefinallast}. Each dot product is scaled by the value $n/d$, because the frustum extents are specified on the near plane $n$.
 
 \begin{align} \label{equation:perspectivefinal}
     r& = (v_r \cdot v_b)n/d, \\
@@ -740,6 +740,10 @@ Using these intermediary values, the final equations to calculate $r$, $l$, $t$ 
     t& = (v_u \cdot v_c)n/d, \\ \label{equation:perspectivefinallast}
     b& = (v_u \cdot v_a)n/d 
 \end{align}
+
+These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection.
+
+\hl{modifying camera rotation and translation matrices to work in unity}
 
 \section{Projector Keystoning Correction}
 \label{section:keystonecorrection}
