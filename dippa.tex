@@ -756,7 +756,7 @@ Software keystoning correction can be done at two stages, either before the fina
 
 Lancelle et al. \cite{TUGrazKeystoning} propose a method to easily correct keystoning issues by allowing the user to drag the corners of the display area to match the wanted shape. In practice, this means that once the projector projects to the screen, the user can drag the corners of the distorted image to match the corners of the screen, resulting in a rectangular image. This calibration process is very intuitive and easy, requiring no forethought. The algorithm can only correct affine distortions though, which means that it will only work when projecting on planar surfaces. One of the strengths of this approach is that the final result is a modification matrix, that can be applied to the projection matrix in the normal rendering pass, resulting in virtually no performance degradation.
 
-Whereas the default way to calculate the projection of point $p$ would be to apply only the modelview and projection matrices, the method of Lancelle et al. adds an additional matrix $C$ to the equation, resulting in the keystone corrected point $r = C * P * M * p$. Where $P$ and $M$ are the projection and modelview matricex, respectively. The matrix $C$ contains the necessary transformations to correct translation, scaling, shearing, rotation and trapezoid deformation in the final image. These deformations can be corrected by using a matrix that has the ten parameters shown in \eqref{matrix:keystoneC}.
+Whereas the default way to calculate the projection of point $p$ would be to apply only the modelview and projection matrices, the method of Lancelle et al. adds an additional matrix $C$ to the equation, resulting in the keystone corrected point $r = C * P * M * p$. Where $P$ and $M$ are the projection and modelview matrices, respectively. The matrix $C$ contains the necessary transformations to correct translation, scaling, shearing, rotation and trapezoid deformation in the final image. These deformations can be corrected by using a matrix that has the ten parameters shown in \eqref{matrix:keystoneC}.
 
 \begin{equation}
 \label{matrix:keystoneC}
@@ -767,6 +767,8 @@ C = \begin{pmatrix}
   m & n & 0 & 1
  \end{pmatrix}
  \end{equation}
+ 
+ This matrix $C$ can be numerically optimized to find a solution that approximates the perfect distortion cancelling matrix. This perfect matrix is the matrix that corrects the display corner point to the user specified new corner point. For the optimization process, Lancelle et al. use the steepest descent algorithm and provide a code example in C, of which we implemented our own C# version that uses the interface provided by Unity.
 
 \section{Integrating Oculus Rift}
 \label{section:integratingoculusrift}
