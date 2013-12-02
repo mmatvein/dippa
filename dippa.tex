@@ -576,9 +576,13 @@ Brooks \cite{Brooks:1999:WRV:616061.618660} lists some examples of virtual reali
 \subsection{CAVE Automatic Virtual Environment}
 \label{subsection:displayenvironments:cave}
 
-The CAVE Automatic Virtual Environment, or CAVE for short, is one of the most well known VR setups. Introduced by Cruz-Neira et al. \cite{CAVE1, CAVE2}, the original CAVE was a room within a room.
+The CAVE Automatic Virtual Environment, or CAVE for short, is one of the most well known VR setups. Introduced by Cruz-Neira et al. \cite{CAVE1, CAVE2}, the original CAVE was an environment designed to be a tool for scientific visualization. The prototype CAVE is a 3x3x3m cube comprised of stereo projection screens, engulfing the user in a continuous three-dimensional image. Speakers are also mounted around the cube, to achieve surround sound. The user's head and hand are tracked for input.
 
-Aalto University has its own semi-CAVE environment, Upponurkka, introduced by Lokki et al. \cite{Upponurkka} which features two projection screens arranged to fit a corner. For each of these screens, two projectors project polarized images, which users can then see as stereo images using regular polarizing 3D glasses. The setup also includes a Kinect camera along with a PlayStation Eye connected to a PlayStation 3. A diagram of the typical Upponurkka setup can be seen in figure \ref{figure:upponurkka}.
+Head tracking allows software to adjust the images shown on the projection screens to match the intuitively expected images. In practice, this is done by modifying the perspective projection based on the position of each eye relative to the screen. Creating the off-center projection matrix for this is described in more detail in section \ref{section:perspectiveprojection}.
+
+Since the CAVE is based on projectors, some common problems, most notably projector keystoning and shadows arise. User shadows can be minimized by using rear-projection screens. Rear-projection screens require some extra space around the cube, though. Projector keystoning can be corrected either in the projectors themselves using optics or software, or at an earlier stage in the rendering software. Our approach to keystoning correction is discussed in section \ref{section:keystonecorrection}.
+
+Aalto University has its own semi-CAVE environment called Upponurkka, introduced by Lokki et al. \cite{Upponurkka}, which features two projection screens arranged to fit a corner. For each of these screens, two projectors project polarized images, which users can then see as stereo images using regular passive 3D glasses. Nowadays the setup also includes a Kinect camera along with a PlayStation Eye connected to a PlayStation 3. Upponurkka is one of the main environments RUIS is designed to accomodate. 
 
 \begin{figure}
 \label{figure:upponurkka}
