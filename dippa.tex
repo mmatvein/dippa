@@ -703,20 +703,21 @@ Many virtual reality applications make use of more than one display. Separate di
 
 The way Unity3D handles multiple camera viewpoints is by requiring the application to specify the normalized viewport rectangle of each camera, in other words, the area of the application window that the camera will render to. While the user can do this manually for each camera, the process will become tedious very quickly, especially when configuring multiple stereoscopic displays. 
 
-We tackle this problem by introducing a display manager component, RUISDisplayManager, to handle the bulk of display-related configuration issues. The user can add, remove and rearrange displays via the editor. Separate displays are called RUISDisplays, signifying their connection to RUIS. Each RUISDisplay works independently of the other displays - the display manager handles all shared tasks. Each RUISDisplay is then linked to a RUISCamera - RUIS's version of the Unity3D standard Camera. This chain of components implements all basic tasks required for multi-display, mono- and/or stereoscopic applications.
+We tackle this problem by introducing a display manager component, RUISDisplayManager, to handle the bulk of display-related configuration issues. The user can add, remove and rearrange displays via the editor. Separate displays are called RUISDisplays, signifying their connection to RUIS. Each RUISDisplay works independently of the other displays - the display manager handles all shared tasks. Each RUISDisplay is then linked to a RUISCamera - RUIS's version of the Unity3D standard Camera. This chain of components implements all basic tasks required for multi-display, mono- and/or stereoscopic applications. This functionality is demonstrated in figure \ref{fig:displaymanagement}.
 
-\subsection{Multiple Displays}
-\label{subsection:multidisplaysystems:multipledisplays}
-
-For each display, the user is able to specify the resolution of the display. The resolution specified is used to calculate the total needed resolution of the application. After this, each display, and the camera linked to it, is assigned its normalized viewport rectangle. 
-
-%\hl{could have example pic of different display configurations}
 \begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{ruisdisplaymanagement}
 \caption{The RUIS display management workflow}
 \label{fig:displaymanagement}
 \end{figure}
+
+\subsection{Multiple Displays}
+\label{subsection:multidisplaysystems:multipledisplays}
+
+For each display, the user is able to specify the resolution of the display. The resolution specified is used to calculate the total needed resolution of the application. After this, each display, and the camera linked to it, is assigned its normalized viewport rectangle. 
+
+
 
 \subsection{Stereoscopy}
 \label{subsection:multidisplaysystems:stereoscopy}
@@ -886,9 +887,14 @@ Mecanim, introduced in Unity 4, is a state-machine based animation system that l
 
 The approach we take in RUIS is to leave the Mecanim process alone and only use the end result as something to blend with the animations coming from Kinect. This way, the user can create a complex system of hard-coded animations, on top of which he can add Kinect animations whenever he wants to, by controlling the ratio in which Mecanim and Kinect are blended.
 
-Unfortunately, there is no easy way to access the final animation data produced by the whole Mecanim state machine, without having the armatures themselves be animated in the project. To combine the animations into one blended animation we therefore create two copies of the original model: one for Kinect and one for Mecanim. The original GameObject is then used for the final blend. 
+Unfortunately, there is no easy way to access the final animation data produced by the whole Mecanim state machine, without having the armatures themselves be animated in the project. To combine the animations into one blended animation we therefore create two copies of the original model: one for Kinect and one for Mecanim. The original GameObject is then used for the final blend. This process is visualized in figure \ref{fig:blendingkinectandmecanim}.
 
-\hl{schematic of the skeleton gameobject being divided into three parts}
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{BlendingKinectAndMecanim.pdf}
+\caption{Blending Kinect and Mecanim animation for a model}
+\label{fig:blendingkinectandmecanim}
+\end{figure}
 
 To blend the bones of the two animations, a three-way connection has to be made that connects the corresponding bones in the two animations with the end result bone. We do this by iterating through the bone hierarchies and matching bones one at a time based on their position in the hierarchy and name. Because all the armatures are created from the same original, this is a relatively safe process. The only drawback is that bones on the same hierarchy level will have to have different names, which is a sound requirement in most well-made armatures anyways. 
 
