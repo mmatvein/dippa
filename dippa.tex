@@ -818,7 +818,7 @@ Using these intermediary values, the final equations to calculate $r$, $l$, $t$ 
     b& = (v_u \cdot v_a)n/d 
 \end{align}
 
-These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection. This projection, however, is for a camera pointing straight ahead from the origin, so the projection matrix will have to be rotated and translated to match the rotation of the display. We create these based on the orthonormal base for the display and the tracker location. The matrices $R$ and $T$ are given in equations \eqref{matrix:perspectiverotation} and \eqref{matrix:perspectivetranslation}. The final projection matrix P becomes $P = P_p * R * T$.
+These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection. This projection, however, is for a camera pointing straight ahead from the origin, so the projection matrix will have to be rotated and translated to match the rotation of the display. We create these based on the orthonormal base for the display and the tracker location. The matrices $R$ and $T$ are given in equations \eqref{matrix:perspectiverotation} and \eqref{matrix:perspectivetranslation}. The final projection matrix P then becomes $P = P_p * R * T$.
 
 \begin{equation}
 \label{matrix:perspectiverotation}
