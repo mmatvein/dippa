@@ -818,7 +818,7 @@ Using these intermediary values, the final equations to calculate $r$, $l$, $t$ 
     b& = (v_u \cdot v_a)n/d 
 \end{align}
 
-These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection.
+These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection. This projection, however, is for a camera pointing straight ahead from the origin, so the projection matrix will have to be rotated and translated to match the rotation of the display. Kooima does this by
 
 \hl{modifying camera rotation and translation matrices to work in unity}
 
