@@ -818,7 +818,17 @@ Using these intermediary values, the final equations to calculate $r$, $l$, $t$ 
     b& = (v_u \cdot v_a)n/d 
 \end{align}
 
-These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection. This projection, however, is for a camera pointing straight ahead from the origin, so the projection matrix will have to be rotated and translated to match the rotation of the display. Kooima does this by
+These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection. This projection, however, is for a camera pointing straight ahead from the origin, so the projection matrix will have to be rotated and translated to match the rotation of the display. We create these based on the orthonormal base for the display and the tracker location. The matrices are given in equations 
+
+\begin{equation}
+\label{matrix:rotation}
+  R = \begin{pmatrix}
+  v_r_x & v_r_y & v_r_z & 0 \\[0.3em]
+  0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\[0.3em]
+  0 & 0 & \frac{f+n}{f-n} & - \frac{2fn}{f-n} \\[0.3em]
+  0 & 0 & 1 & 0
+ \end{pmatrix}
+ \end{equation}
 
 \hl{modifying camera rotation and translation matrices to work in unity}
 
