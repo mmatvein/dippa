@@ -818,25 +818,25 @@ Using these intermediary values, the final equations to calculate $r$, $l$, $t$ 
     b& = (v_u \cdot v_a)n/d 
 \end{align}
 
-These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection. This projection, however, is for a camera pointing straight ahead from the origin, so the projection matrix will have to be rotated and translated to match the rotation of the display. We create these based on the orthonormal base for the display and the tracker location. The matrices are given in equations \eqref{equation:perspectiverotation} and \eqref{equation:perspectivetranslation}.
+These values can be inserted into the default perspective projection matrix $P_p$ to get an off-axis projection. This projection, however, is for a camera pointing straight ahead from the origin, so the projection matrix will have to be rotated and translated to match the rotation of the display. We create these based on the orthonormal base for the display and the tracker location. The matrices $R$ and $T$ are given in equations \eqref{matrix:perspectiverotation} and \eqref{matrix:perspectivetranslation}. The final projection matrix P becomes $P = P_p * R * T$.
 
 \begin{equation}
 \label{matrix:perspectiverotation}
   R = \begin{pmatrix}
   v_r_x & v_r_y & v_r_z & 0 \\[0.3em]
-  0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\[0.3em]
-  0 & 0 & \frac{f+n}{f-n} & - \frac{2fn}{f-n} \\[0.3em]
-  0 & 0 & 1 & 0
+  v_u_x & v_u_y & v_u_z & 0 \\[0.3em]
+  v_n_x & v_n_y & v_n_z & 0 \\[0.3em]
+  0 & 0 & 0 & 1
  \end{pmatrix}
  \end{equation}
  
  \begin{equation}
 \label{matrix:perspectivetranslation}
-  R = \begin{pmatrix}
-  0 & 0 & 0 & p_e_x \\[0.3em]
-  0 & \frac{2n}{t-b} & \frac{t+b}{t-b} & 0 \\[0.3em]
-  0 & 0 & \frac{f+n}{f-n} & - \frac{2fn}{f-n} \\[0.3em]
-  0 & 0 & 1 & 0
+  T = \begin{pmatrix}
+  1 & 0 & 0 & -p_e_x \\[0.3em]
+  0 & 1 & 0 & -p_e_y \\[0.3em]
+  0 & 0 & 1 & -p_e_z \\[0.3em]
+  0 & 0 & 0 & 1
  \end{pmatrix}
  \end{equation}
 
