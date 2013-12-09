@@ -840,9 +840,9 @@ These values can be inserted into the default perspective projection matrix $P_p
 \end{pmatrix}
 \end{equation}
 
-This end result is then plugged into Unity's Camera projection matrix, but in order to get the correct end result we disable Unity's automatic camera model view matrix updating and replace it with our own. 
+This end result is then plugged into Unity's Camera projection matrix, but in order to get the correct end result we disable Unity's automatic camera model view matrix (\emph{worldToCameraMatrix}) and replace it with our own. The replacing matrix is the inverse of the transform of the camera.
 
-\hl{modifying camera rotation and translation matrices to work in unity}
+\hl{end section}
 
 \section{Projector Keystone Correction}
 \label{section:keystonecorrection}
