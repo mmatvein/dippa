@@ -183,7 +183,10 @@
 % Subfigure package allows you to use subfigures (i.e. many subfigures
 % within one figure environment). These can have different labels and
 % they are numbered automatically. Check the package documentation.
-\usepackage{subfigure}
+%\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 
 % The titlesec package can be used to alter the look of the titles
 % of sections, chapters, and so on. This example uses the ``medium''
@@ -892,19 +895,17 @@ As the projection matrix only changes the visual elements on the display, not th
         \caption{Before}
         \label{fig:awesome_image}
     \end{subfigure}
-    ~
     \begin{subfigure}
         \includegraphics[width=0.3\textwidth]{keystoningProcess}
         \caption{Configuration}
         \label{fig:awesome_image}
     \end{subfigure}
-    ~
     \begin{subfigure}
         \includegraphics[width=0.3\textwidth]{keystoningFinal}
         \caption{After}
         \label{fig:awesome_image}
     \end{subfigure}
-    \caption{The keystoning process} \label{figure:keystoningprocess}
+    \caption{The keystoning process} \label{fig:keystoningprocess}
 \end{figure}
 
 \section{Integrating Oculus Rift}
