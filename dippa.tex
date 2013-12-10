@@ -858,7 +858,7 @@ Software keystoning correction can be done at two stages, either before the fina
 
 Lancelle et al. \cite{TUGrazKeystoning} propose a method to easily correct keystoning issues by allowing the user to drag the corners of the display area to match the wanted shape. In practice, this means that once the projector projects to the screen, the user can drag the corners of the distorted image to match the corners of the screen, resulting in a rectangular image. This calibration process is very intuitive and easy, requiring no forethought. The algorithm can only correct affine distortions though, which means that it will only work when projecting on planar surfaces. One of the strengths of this approach is that the final result is a modification matrix, that can be applied to the projection matrix in the normal rendering pass, resulting in virtually no performance degradation.
 
-Whereas the default way to calculate the projection $q$ of point $p$ would be to apply only the modelview and projection matrices, the method of Lancelle et al. adds an additional matrix $C$ to the equation, resulting in the keystone corrected point $k = C * P * M * p$, where $P$ and $M$ are the projection and modelview matrices, respectively. The projected point $q$ can then be defined as $q = P * M * p$. The matrix $C$ contains the necessary transformations to correct translation, scaling, shearing, rotation and trapezoid deformation in the final image. According to Lancelle et al., these deformations can be corrected by using a matrix that has the ten parameters shown in \eqref{matrix:keystoneC}, with $i = m$ and $j = n$. Our tests showed, however, that this matrix needs some extra tuning and is not valid as is. The near plane is distorted, which results in closeby objects being culled even though they should be visible.
+Whereas the default way to calculate the projection $q$ of point $p$ would be to apply only the modelview and projection matrices, the method of Lancelle et al. adds an additional matrix $C$ to the equation, resulting in the keystone corrected point $k = C * P * M * p$, where $P$ and $M$ are the projection and modelview matrices, respectively. The projected point $q$ can be defined as $q = P * M * p$. The matrix $C$ contains the necessary transformations to correct translation, scaling, shearing, rotation and trapezoid deformation in the final image. According to Lancelle et al., these deformations can be corrected by using a matrix that has the ten parameters shown in \eqref{matrix:keystoneC}, with $i = m$ and $j = n$. Our tests showed, however, that this matrix needs some extra tuning and is not valid as is. The near plane is distorted, which results in closeby objects being culled even though they should be visible.
 
 \begin{equation}
 \label{matrix:keystoneC}
@@ -882,7 +882,7 @@ C = \begin{pmatrix}
  \end{pmatrix}
  \end{equation}
  
-This matrix $C$ can be numerically optimized to find a solution that approximates the perfect distortion cancelling matrix. This perfect matrix is the matrix that corrects the display corner point to the user specified new corner point, i.e. the matrix $C$ that solves the equation $k = C * p'$. For the optimization process, Lancelle et al. use the steepest descent algorithm and provide a code example in C, of which we implemented our own C\# version that uses the interface provided by Unity. We also experimented with their $i = m$ and $j = n$ assignment, but we felt there was no visible improvement, so we decided to leave the correction matrix as simple as possible.
+This matrix $C$ can be numerically optimized to find a solution that approximates the perfect distortion cancelling matrix. This perfect matrix is the matrix that corrects the display corner point to the user specified new corner point, i.e. the matrix $C$ that solves the equation $k = C * q$. For the optimization process, Lancelle et al. use the steepest descent algorithm and provide a code example in C, of which we implemented our own C\# version that uses the interface provided by Unity. We also experimented with their $i = m$ and $j = n$ assignment, but we felt there was no visible improvement, so we decided to leave the correction matrix as simple as possible.
 
 We make the keystone correction configuration process intuitive by allowing the user to enter a special configuration mode, where he can drag the corners of the image to match the wanted image shape. Lancelle et al. use a method, where the user points multiple rays at the wanted corner. The average intersection point of these rays marks the wanted corner point. We feel the mouse dragging method is faster and more intuitive enough to counterbalance the sub-pixel precision offered by the ray pointing method.  
 
@@ -890,17 +890,19 @@ As the projection matrix only changes the visual elements on the display, not th
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.5\textwidth}
         \includegraphics[width=\textwidth]{keystoningStart}
         \caption{Before}
         \label{subfig:keystoningBefore}
     \end{subfigure}
-    \begin{subfigure}[b]{0.4\textwidth}
+    ~
+    \begin{subfigure}[b]{0.5\textwidth}
         \includegraphics[width=\textwidth]{keystoningProcess}
         \caption{Configuration}
         \label{subfig:keystoningConfiguration}
     \end{subfigure}
-    \begin{subfigure}[b]{0.4\textwidth}
+    ~
+    \begin{subfigure}[b]{0.5\textwidth}
         \includegraphics[width=\textwidth]{keystoningFinal}
         \caption{After}
         \label{subfig:keystoningAfter}
