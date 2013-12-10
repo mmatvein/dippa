@@ -879,7 +879,7 @@ C = \begin{pmatrix}
  \end{pmatrix}
  \end{equation}
  
- This matrix $C$ can be numerically optimized to find a solution that approximates the perfect distortion cancelling matrix. This perfect matrix is the matrix that corrects the display corner point to the user specified new corner point. For the optimization process, Lancelle et al. use the steepest descent algorithm and provide a code example in C, of which we implemented our own C\# version that uses the interface provided by Unity. We also experimented with their $i = m$ and $j = n$ assignment, but we felt there was no visible improvement, so we decided to leave the correction matrix as simple as possible.
+ This matrix $C$ can be numerically optimized to find a solution that approximates the perfect distortion cancelling matrix. This perfect matrix is the matrix that corrects the display corner point to the user specified new corner point, i.e. the matrix $C$ that solves the equation $r = C * p'$. For the optimization process, Lancelle et al. use the steepest descent algorithm and provide a code example in C, of which we implemented our own C\# version that uses the interface provided by Unity. We also experimented with their $i = m$ and $j = n$ assignment, but we felt there was no visible improvement, so we decided to leave the correction matrix as simple as possible.
 
 \section{Integrating Oculus Rift}
 \label{section:integratingoculusrift}
