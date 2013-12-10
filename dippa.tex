@@ -850,9 +850,35 @@ This end result is then plugged into Unity's Camera projection matrix, but in or
 \section{Projector Keystone Correction}
 \label{section:keystonecorrection}
 
-When a projector displays an image on a projection screen, the shape of the projected image is dependent on the location of the projector in relation to the screen. The image will only match the intended rectangular image if the projector projects perfectly on the normal of the screen plane. If the projection axis is off-center, the image will be distorted. This phenomenon is called the keystone effect. In order to show images correctly this distortion will have to be corrected. This is especially important when using two projectors to display images on top of each other or when aligning two images that are next to each other, which both are usual tasks when setting up a CAVE environment. Some high-end projectors are equipped with special optics for keystoning correction, mostly only to correct distortion caused by vertical offset. Therefore, to guarantee compatibility with all projector models, the task is often best done in software.
+When a projector displays an image on a projection screen, the shape of the projected image is dependent on the location of the projector in relation to the screen. The image will only match the intended rectangular image if the projector projects perfectly on the normal of the screen plane. If the projection axis is off-center, the image will be distorted. This phenomenon is called the keystone effect and it is visualized in figure \ref{fig:keystoneEffect}. In order to show images correctly this distortion will have to be corrected. This is especially important when using two projectors to display images on top of each other or when aligning two images that are next to each other, which both are usual tasks when setting up a CAVE environment. Some high-end projectors are equipped with special optics for keystoning correction, mostly only to correct distortion caused by vertical offset. Therefore, to guarantee compatibility with all projector models, the task is often best done in software.
 
-\hl{image of the keystone effect}
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{keystoneOriginal}
+        \caption{Original image}
+        \label{subfig:keystoneOriginal}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{keystoneHorizontal}
+        \caption{Horizontal keystoning, projector positioned left}
+        \label{subfig:keystoneHorizontal}
+    \end{subfigure}
+    \\[0.3em]
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{keystoneVertical}
+        \caption{Vertical keystoning, projector positioned high}
+        \label{subfig:keystoneVertical}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{keystoneCombo}
+        \caption{A combination of vertical and horizontal keystoning, projector positioned high and left}
+        \label{subfig:keystoneCombo}
+    \end{subfigure}
+    \caption{The keystone effect} \label{fig:keystoneEffect}
+\end{figure}
 
 Software keystoning correction can be done at two stages, either before the final render is created, inside the application, or as a completely separate process after the application visuals have been rendered. The former method is the visually superior one, as modifying the parameters used for image creation does not lose detail. This method does however require access to the rendering pipeline, to modify the perspective projection. The latter method stretches and skews the final render to counteract the distortion, but image quality will suffer as pixel aliasing will start to appear. In RUIS the pre-render method is applicable, because we can access the projection matrices.
 
