@@ -883,15 +883,28 @@ This matrix $C$ can be numerically optimized to find a solution that approximate
 
 We make the keystone correction configuration process intuitive by allowing the user to enter a special configuration mode, where he can drag the corners of the image to match the wanted image shape. Lancelle et al. use a method, where the user points multiple rays at the wanted corner. The average intersection point of these rays marks the wanted corner point. We feel the mouse dragging method is faster and more intuitive enough to counterbalance the sub-pixel precision offered by the ray pointing method.  
 
-As the projection matrix only changes the visual elements on the display, not the viewport itself, black borders have to be drawn on areas that are outside of the new screen quad. During the keystone configuration process we also draw a white frame inside the quad to contrast the bordering edge.
+As the projection matrix only changes the visual elements on the display, not the viewport itself, black borders have to be drawn on areas that are outside of the new screen quad. During the keystone configuration process we also draw a white frame inside the quad to contrast the bordering edge. 
 
 \begin{figure}[p]
     \centering
     \begin{subfigure}
-        \includegraphics[width=0.3\textwidth]{image.png}
-        \caption{Before keystoning}
+        \includegraphics[width=0.3\textwidth]{keystoningStart}
+        \caption{Before}
         \label{fig:awesome_image}
     \end{subfigure}
+    ~
+    \begin{subfigure}
+        \includegraphics[width=0.3\textwidth]{keystoningProcess}
+        \caption{Configuration}
+        \label{fig:awesome_image}
+    \end{subfigure}
+    ~
+    \begin{subfigure}
+        \includegraphics[width=0.3\textwidth]{keystoningFinal}
+        \caption{After}
+        \label{fig:awesome_image}
+    \end{subfigure}
+    \caption{The keystoning process} \label{figure:keystoningprocess}
 \end{figure}
 
 \section{Integrating Oculus Rift}
