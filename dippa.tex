@@ -1114,6 +1114,9 @@ To connect to the Move.me server we use PSMoveWrapper \cite{PSMoveWrapper}, a ne
 
 One difficulty we faced with the version of PSMoveWrapper we used was that the WasPressed and WasReleased functions, used to check whether a button has been pressed since the last frame, only worked for the first call made to them during an update cycle. This is unwanted behavior and would result in many hard-to-find bugs for users - they would have to read the PSMoveWrapper source code to find out what is happening. We fixed this problem by restructuring the functions so that they return correct values for the whole update cycle.
 
+\subsection{Razer Hydra}
+\label{subsection:wandcontrollers:hydra}
+
 \subsection{Skeleton Wand}
 \label{subsection:wandcontrollers:skeleton}
 
