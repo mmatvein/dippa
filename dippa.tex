@@ -414,7 +414,7 @@ The introduction of game consoles with motion tracked controllers and depth sens
 
 This thesis details the design and implementation of RUIS (Reality-based User Interface System), a virtual reality toolkit for Unity3D. The main goal of RUIS is to make the creation of VR applications as straightforward as possible. This is achieved by providing users with basic building blocks that solve many of the challenges encountered in the development of VR software. These building blocks provide a layer of abstraction which gives the developer the chance to focus on interaction methods and the application itself.
 
-The two main tasks RUIS handles are input and display configuration management. The challenges involved in the management of input methods are for example the calibraton of coordinate systems, providing a clean interface for the usage of different types of devices in a standarized way and providing prebuilt modules that handle common VR tasks such as head tracking. The multitude of different virtual reality display configurations on the other hand require solutions for multi-display environments, head tracked views, projector keystoning correction and stereoscopic displays. RUIS implements these features and gives the developer a chance to create motion-based 3D applications easily inside the Unity Editor. 
+The two main tasks RUIS handles are input and display configuration management. The challenges involved in the management of input methods are for example the calibraton of coordinate systems, providing a clean interface for the usage of different types of devices in a standarized way and providing prebuilt modules that handle common VR tasks such as head tracking. The multitude of different virtual reality display configurations on the other hand require solutions for multi-display environments, head tracked views, projector keystone correction and stereoscopic displays. RUIS implements these features and gives the developer a chance to create motion-based 3D applications easily inside the Unity Editor. 
 
 Special attention during development was also given to the usability of RUIS - especially the idiomatic usage of Unity3D. This emphasis was put to the test on the Aalto University course T-111.5400 Virtual Reality, where the students used RUIS to create their applications. This thesis also discusses the results and lessons learned during the course. }
 
@@ -545,7 +545,7 @@ IPD & Inter-Pupillary Distance
 \chapter{Introduction}
 \label{chapter:intro}
 
-Virtual Reality (VR) is a field of technology that is gaining a lot of momentum among internet media and technology enthusiasts. The outburst of motion controllers, high-resolution stereo displays and high processing power hardware has made the VR that was previously an expensive, mostly academic, endeavor into a widely publicized special interest that is becoming more commonplace every day. The cost of a setup that qualifies as a VR environment has gone down drastically, and the creation of 3D applications has become easier as game engines, modeling tools and middleware have evolved. Designing and implementing VR applications and games has therefore become a current idea for many hobbyists.
+Virtual Reality (VR) is a field of technology that is gaining a lot of momentum among Internet media and technology enthusiasts. The outburst of motion controllers, high resolution stereo displays and high processing power hardware has made the VR that was previously an expensive, mostly academic, endeavor into a widely publicized special interest that is becoming more commonplace every day. The cost of a setup that qualifies as a VR environment has gone down drastically, and the creation of 3D applications has become easier as game engines, modeling tools and middleware have evolved. Designing and implementing VR applications and games has therefore become a current idea for many hobbyists.
 
 In the implementation of a virtual reality application, the developer often runs into tasks that are common among many different VR projects and quite far removed from the application logic. Such tasks include interfacing with different input methods, sensor fusion and managing multiple displays, among others. It makes sense to package all these tasks into a library that developers can use to streamline the creation and allow them to focus on the application itself. 
 
@@ -625,9 +625,9 @@ The CAVE Automatic Virtual Environment, or CAVE for short, is one of the most we
 
 Head tracking allows software to adjust the images shown on the projection screens to match the intuitively expected images. In practice, this is done by modifying the perspective projection based on the position of each eye relative to the screen. Creating the off-center projection matrix for this is described in more detail in section \ref{section:perspectiveprojection}.
 
-Since the CAVE is based on projectors, some common problems, most notably projector keystoning and shadows arise. User shadows can be minimized by using rear-projection screens. Rear-projection screens require some extra space around the cube, though. Projector keystoning can be corrected either in the projectors themselves using optics or software, or at an earlier stage in the rendering software. Our approach to keystoning correction is discussed in section \ref{section:keystonecorrection}.
+Since the CAVE is based on projectors, some common problems, most notably projector keystoning and shadows arise. User shadows can be minimized by using rear-projection screens. Rear-projection screens require some extra space around the cube, though. Projector keystoning can be corrected either in the projectors themselves using optics or software, or at an earlier stage in the rendering software. Our approach to keystone correction is discussed in section \ref{section:keystonecorrection}.
 
-Aalto University has its own semi-CAVE environment called Upponurkka, introduced by Lokki et al. \cite{Upponurkka}, which features two projection screens arranged to fit a corner. For each of these screens, two projectors project polarized images, which users can then see as stereo images using regular passive 3D glasses. Nowadays the setup also includes a Kinect camera along with a PlayStation Eye connected to a PlayStation 3. Upponurkka is one of the main environments RUIS is designed to accomodate. 
+Aalto University has its own semi-CAVE environment called Upponurkka, introduced by Lokki et al. \cite{Upponurkka}, which features two projection screens arranged to fit a corner. For each of these screens, two projectors project polarized images, which users can then see as stereo images using regular passive 3D glasses. Nowadays the setup also includes a Kinect camera along with a PlayStation Eye connected to a PlayStation 3. Upponurkka is one of the main environments RUIS is designed to accommodate. 
 
 \begin{figure}
 \label{figure:upponurkka}
@@ -647,10 +647,10 @@ Head-mounted displays (HMD) are a special type of displays, introduced by Suther
 \hl{some examples of older motion tracking systems}
 
 
-\subsection{Depth-sensing Cameras}
+\subsection{Depth Sensing Cameras}
 \label{subsection:motion:kinect}
 
-The Microsoft Kinect is a depth-sensing camera originally launched in November 2010. \hl{SOURCE}
+The Microsoft Kinect is a depth sensing camera originally launched in November 2010. \hl{SOURCE}
 
 \subsection{Wand Controllers}
 \label{subsection:motion:move}
@@ -692,7 +692,7 @@ Code architecture in Unity3D is very much based on a common base class for all s
 
 Unity3D also features prefabs: prefabricated objects that can be drag and dropped into a scene. This allows users to create pre-built common game objects and easily share them between scenes. The use of prefabs is an important part of using Unity3D efficiently, so it was a big point to take into consideration in the development of RUIS. 
 
-\section{System Architechture}
+\section{System Architecture}
 \label{section:systemarchitecture}
 
 \subsection{Folder Structure}
@@ -720,7 +720,7 @@ Several external libraries and frameworks were used in the development of RUIS, 
 \subsection{OpenNI}
 \label{subsection:external:openni}
 
-RUIS uses OpenNI \hl{OpenNI site} as its skeletal tracking library. OpenNI is an open-source framework used for developing applications featuring natural bodily interaction. In the case of RUIS, OpenNI is used in tandem with the NiTE middleware libraries \hl{NiTE site}. NiTE extracts the skeletal data and RUIS references it through the OpenNI Unity Wrapper. 
+RUIS uses OpenNI \hl{OpenNI site} as its skeletal tracking library. OpenNI is an open source framework used for developing applications featuring natural bodily interaction. In the case of RUIS, OpenNI is used in tandem with the NiTE middleware libraries \hl{NiTE site}. NiTE extracts the skeletal data and RUIS references it through the OpenNI Unity Wrapper. 
 
 \hl{more, primesense drivers for xtion and kinect etc.}
 
@@ -744,7 +744,7 @@ This chapter details all the implemented features regarding the management of di
 
 When displaying virtual worlds on a static screen relative to the movement of the observing user, the stereoscopic effect and general immersion level can be improved by modifying the perspective projection matrix to account for the changes in head position. This can make it seem as if the user were looking at the virtual world through a real window. This method requires accurate head tracking in order to be fully immersive.
 
-As the last step in many projector systems, a projector keystoning correction will have to be applied. Projector keystoning is caused by projectors being off-center relative to the plane they are projecting on. This results in a distorted image that will be especially disturbing in multi-projector stereoscopic environments: The images for both eyes will not match and discrete seams will appear between the images meant for separate walls.
+As the last step in many projector systems, projector keystone correction will have to be applied. Projector keystoning is caused by projector's axis of projection being off-center relative to the plane they are projecting on. This results in a distorted image that will be especially disturbing in multi-projector stereoscopic environments: The images for both eyes will not match and discrete seams will appear between the images meant for separate walls.
 
 Finally, this chapter discusses the challenges we faced when integrating the Oculus SDK into our project. A head-mounted display requires some extra configurability for example in the head tracking settings. We also wanted to make sure this freedom did not come at the expense of usability.
 
@@ -783,12 +783,12 @@ In addition to the Unity3D Camera attached to the RUISCamera, two new GameObject
 
 The most straightforward way to assign the left and right cameras the correct viewport rectangle is to just halve the rectangle of the center camera. The user makes a decision in which direction he wants to separate the eyes, side-by-side or top-and-bottom, based on the settings of the display device. After disabling the center camera and enabling the left and right cameras both images will render correctly in order for the display device to display a stereoscopic image.
 
-The last part in setting up a correct stereoscopic view is configuring the cameras to be at the correct positions. The eye separation, or interpupillary distance (IPD), will have to be set to a value that suits the user. Dodgson  \cite{Dodgson04variationand} has found the IPD of adults in general to be between 52 mm and 78 mm, with the mean being 63 mm. This variability makes it important for the value to be configurable, since a wrong configuration will result in severe discomfort for some users. RUIS handles IPD configurability by offsetting the left and right camera GameObjects from the center camera. By default, these cameras are then set to look straight ahead. The user can also tweak the so-called zero parallax distance - the distance where the left and right camera view rays converge. For off-axis projections, described in the following section, the left and right eye cameras are left at their positions at the camera origin, since the off-axis projection already takes care of their offsets.
+The last part in setting up a correct stereoscopic view is configuring the cameras to be at the correct positions. The eye separation, or inter-pupillary distance (IPD), will have to be set to a value that suits the user. Dodgson  \cite{Dodgson04variationand} has found the IPD of adults in general to be between 52 mm and 78 mm, with the mean being 63 mm. This variability makes it important for the value to be configurable, since a wrong configuration will result in severe discomfort for some users. RUIS handles the configuration of IPD by offsetting the left and right camera GameObjects from the center camera. By default, these cameras are then set to look straight ahead. The user can also tweak the so called zero parallax distance - the distance where the left and right camera view rays converge. For off-axis projections, described in the following section, the left and right eye cameras are left at their positions at the camera origin, since the off-axis projection already takes care of their offsets.
 
 \section{Perspective Projection for a Head-Tracked View}
 \label{section:perspectiveprojection}
 
-In CAVE and non-HMD systems a big part of the depth effect and positional awareness comes from moving the head in relation to the display. If the image on the screen stays static, the effect is non-existent and the screen will look like a picture frame. By adding head tracking and shifting the viewpoint with the head, a new level of depth is achieved. Even this results in a relatively flat image, though. To take the effect even further, the projection matrix used for the cameras can be modified to make the display or projector screen seem like a window to the virtual world. This effect is demonstrated well in Lee's \cite{JohnnyLeePerspective} video on the subject. The projection matrix has to be modified so that the frustum edges from each eye match the corresponding display edges. This requires knowledge of both the eye locations as well as the display location in tracker coordinates.
+In CAVE and non-HMD systems a big part of the depth effect and positional awareness comes from moving the head in relation to the display. If the image on the screen stays static, the effect is nonexistent and the screen will look like a picture frame. By adding head tracking and shifting the viewpoint with the head, a new level of depth is achieved. Even this results in a relatively flat image, though. To take the effect even further, the projection matrix used for the cameras can be modified to make the display or projector screen seem like a window to the virtual world. This effect is demonstrated well in Lee's \cite{JohnnyLeePerspective} video on the subject. The projection matrix has to be modified so that the frustum edges from each eye match the corresponding display edges. This requires knowledge of both the eye locations as well as the display location in tracker coordinates.
 
 \begin{figure}[h]
     \centering
@@ -899,7 +899,7 @@ When a projector displays an image on a projection screen, the shape of the proj
     \caption{The keystone effect} \label{fig:keystoneEffect}
 \end{figure}
 
-Software keystoning correction can be done at two stages, either before the final render is created, inside the application, or as a completely separate process after the application visuals have been rendered. The former method is the visually superior one, as modifying the parameters used for image creation does not lose detail. This method does however require access to the rendering pipeline, to modify the perspective projection. The latter method stretches and skews the final render to counteract the distortion, but image quality will suffer as pixel aliasing will start to appear. In RUIS the pre-render method is applicable, because we can access the projection matrices.
+Software keystone correction can be done at two stages, either before the final render is created, inside the application, or as a completely separate process after the application visuals have been rendered. The former method is the visually superior one, as modifying the parameters used for image creation does not lose detail. This method does however require access to the rendering pipeline, to modify the perspective projection. The latter method stretches and skews the final render to counteract the distortion, but image quality will suffer as pixel aliasing will start to appear. In RUIS the pre-render method is applicable, because we can access the projection matrices.
 
 Lancelle et al. \cite{TUGrazKeystoning} propose a method to easily correct keystoning issues by allowing the user to drag the corners of the display area to match the wanted shape. In practice, this means that once the projector projects to the screen, the user can drag the corners of the distorted image to match the corners of the screen, resulting in a rectangular image. This calibration process is very intuitive and easy, requiring no forethought. The algorithm can only correct affine distortions though, which means that it will only work when projecting on planar surfaces. One of the strengths of this approach is that the final result is a modification matrix, that can be applied to the projection matrix in the normal rendering pass, resulting in virtually no performance degradation.
 
@@ -969,7 +969,7 @@ As the projection matrix only changes the visual elements on the display, not th
 \section{Integrating Oculus Rift}
 \label{section:integratingoculusrift}
 
-Separate from all of the previous functinality is the Oculus Rift. Applications developed for the Rift require very different features from the display management system than CAVE applications, for example. Applications designed for head-mounted displays (HMD) usually use the HMD as their only display. 
+Separate from all of the previous functionality is the Oculus Rift. Applications developed for the Rift require very different features from the display management system than CAVE applications, for example. Applications designed for head-mounted displays (HMD) usually use the HMD as their only display. 
 
 \hl{more stuff about the sdk}
 
@@ -985,7 +985,7 @@ The second big subsystem of RUIS is the input manager. It takes care of all the 
 \section{Coordinate Systems}
 \label{section:coordinatesystem}
 
-All of the motion control devices supported by RUIS operate in their own coordinate systems. In order to use all of these devices together the coordinate systems will have to be calibrated into one common system. Unity3D uses a consistent left-handed coordinate system with the basic distance unit being one meter, therefore, to make the use of RUIS as easy as possible for the end-user, it makes sense to transform all the input coordinates into the Unity3D coordinates.
+All of the motion control devices supported by RUIS operate in their own coordinate systems. In order to use all of these devices together the coordinate systems will have to be calibrated into one common system. Unity3D uses a consistent left-handed coordinate system with the basic distance unit being one meter, therefore, to make the use of RUIS as easy as possible for the end user, it makes sense to transform all the input coordinates into the Unity3D coordinates.
 
 \subsection{Coordinate System Calibration}
 \label{subsection:coordinatesystems:calibration}
@@ -1003,19 +1003,19 @@ The Move to Kinect transformation matrix is calculated by creating the equation 
 
 After finding the matrix A, the rotation and translation components are separated into a Quaternion and Vector3, which are ready to be applied to Move orientations and positions to turn them into their Kinect counterparts.
 
-Also, the real-world floor location and normal are found during the calibration process by using OpenNI's scene analysis tools. This information is then used to tilt the coordinate system to counteract the tilt angle of the Kinect camera and to set the floor to be at the y = 0 plane if the user wishes to do so.
+Also, the real world floor location and normal are found during the calibration process by using OpenNI's scene analysis tools. This information is then used to tilt the coordinate system to counteract the tilt angle of the Kinect camera and to set the floor to be at the y = 0 plane if the user wishes to do so.
 
 \subsection{Controlling Virtual Characters}
 \label{subsection:coordinatesystems:virtualcharacters}
 
-When moving virtual characters it is important to differentiate which coordinate system the character will be moved in. In addition to the local and global coordinates of the game object itself, we have to take tracker coordinates into account. For example when calculating projection matrixes for head tracked views, the matrix is calculated using the eyes' positions relative to the real-world coordinates of the screen. 
+When moving virtual characters it is important to differentiate which coordinate system the character will be moved in. In addition to the local and global coordinates of the game object itself, we have to take tracker coordinates into account. For example when calculating projection matrixes for head tracked views, the matrix is calculated using the eyes' positions relative to the real world coordinates of the screen. 
 
 \hl{avaruusalusmalli, ruislocomotion, pivot point hahmoa kaantaessa}
 
 \section{Skeleton Tracking and Character Animation}
 \label{section:skeletontracking}
 
-To display a virtual character that matches the real-world movements of the user, the user skeleton will have to be tracked. RUIS uses OpenNI and a depth-sensing camera to achieve this. This procedure is detailed in chapter \ref{subsection:external:openni}. This section focuses on the software building upon the basic skeletal tracking to enable the creation of rich, interactive applications. 
+To display a virtual character that matches the real world movements of the user, the user skeleton will have to be tracked. RUIS uses OpenNI and a depth-sensing camera to achieve this. This procedure is detailed in chapter \ref{subsection:external:openni}. This section focuses on the software building upon the basic skeletal tracking to enable the creation of rich, interactive applications. 
 
 \subsection{Skeleton Management}
 \label{subsection:skeletontracking:skeletonmanagement}
@@ -1025,7 +1025,7 @@ To display a virtual character that matches the real-world movements of the user
 
 Supporting the whole plethora of user-made humanoid models available is a big undertaking. There is no set-in-stone standard that all armatures adhere to, so in the implementation of RUIS we make certain assumptions of the structure of the model.
 
-Armatures are tree-based bone structures that control the deformation of the model mesh. Each mesh vertex has a number of bone weights, which determine the bones that affect the position of the vertex and by which strenghts. To move different parts of the model, the armature bones will therefore have to be controlled. To control a model using Kinect, we created a component called RUISSkeletonController, which takes in skeleton data and uses it to control bones in a model. Basically RUISSkeletonController is just a link that copies and translates transforms from one place, RUISSkeletonManager, to the other, the armature.
+Armatures are tree-based bone structures that control the deformation of the model mesh. Each mesh vertex has a number of bone weights, which determine the bones that affect the position of the vertex and by which strengths. To move different parts of the model, the armature bones will therefore have to be controlled. To control a model using Kinect, we created a component called RUISSkeletonController, which takes in skeleton data and uses it to control bones in a model. Basically RUISSkeletonController is just a link that copies and translates transforms from one place, RUISSkeletonManager, to the other, the armature.
 
 This approach, however, works directly only for non-hierarchical armatures, since the data within RUISSkeletonManager is non-hierarchical. RUISSkeletonController therefore translates these positions and rotations into a hierarchical version by making the assumption that the structure of the armature follows the structure outlined in figure \ref{fig:skeletontreestructure}. All rotations are set to be correct in the global coordinate system, when compared to the skeleton torso joint. For hierarchical models, the local positions of bones will not have to be set, since transformations propagate through the armature. On the other hand, in custom made models and armatures the bone lengths will most likely not match the real users' bone lengths, so the joint positions will be incorrect. For this reason, the bones will have to be scaled to match their real counterparts.
 
@@ -1051,7 +1051,7 @@ As a final touch, everything can be smoothed out by applying some damping to the
 
 In many cases the application developer might want to add some pre-made animation to the avatar to make the world seem more vibrant. This can range from simple walk cycles to complex death animations. Unfortunately Unity3D's Mecanim system does not have its own system for blending procedural animation, i.e. our Kinect data, with animations made in animation software. Therefore we have had to bridge this gap by creating our own animation blender that mixes these animations together based on the user preferences. 
 
-Mecanim, introduced in Unity 4, is a state-machine based animation system that lets the developer mix and match animations attached to an avatar by controlling custom parameters. In the most simple case this can be done just by creating a state machine with one state, for example an idle animation. This system can then be built upon by adding different animation layers for the lower and upper body, separate animations for walking in different directions, etc. The blend factors of all of these animations can then be controlled by using the parameters fed to the animator system. 
+Mecanim, introduced in Unity 4, is a state machine based animation system that lets the developer mix and match animations attached to an avatar by controlling custom parameters. In the most simple case this can be done just by creating a state machine with one state, for example an idle animation. This system can then be built upon by adding different animation layers for the lower and upper body, separate animations for walking in different directions, etc. The blend factors of all of these animations can then be controlled by using the parameters fed to the animator system. 
 
 The approach we take in RUIS is to leave the Mecanim process alone and only use the end result as something to blend with the animations coming from Kinect. This way, the user can create a complex system of hard-coded animations, on top of which he can add Kinect animations whenever he wants to, by controlling the ratio in which Mecanim and Kinect are blended.
 
@@ -1073,7 +1073,7 @@ During this matching process we also classify the bones to their corresponding b
 \subsection{Adding Physics to a Kinect-Controlled Virtual Character}
 \label{subsection:skeletontracking:physics}
 
-Combining real-world physics with virtual physics requires some special consideration. Without special hardware, nothing that happens physically in the virtual world can affect how the user behaves in the real world, while real-world physics are always present in kinect-controlled motion: The floor and objects restrict movement, gravity affects the user's behavior, etc. Therefore, it is important to specify the wanted physical relationship for each application on a case-by-case basis. Also, in order to work around the limitations that the Kinect tracking imposes on the physical interaction, some precautions will have to be taken.
+Combining real world physics with virtual physics requires some special consideration. Without special hardware, nothing that happens physically in the virtual world can affect how the user behaves in the real world, while real world physics are always present in kinect-controlled motion: The floor and objects restrict movement, gravity affects the user's behavior, etc. Therefore, it is important to specify the wanted physical relationship for each application on a case-by-case basis. Also, in order to work around the limitations that the Kinect tracking imposes on the physical interaction, some precautions will have to be taken.
 
 In a perfect world the Kinect-controlled character would be able to interact with the virtual world physically just by adding colliders to every body part of the model. The most rudimentary versions of the RUISSkeletonController enabled prefabs do exactly this. The avatar is a kinematic Unity3D Rigidbody that interacts with the environment but the environment does not affect the way the character moves. This is pretty intuitive behavior, since this way the avatar always matches your real body. The problem with this approach becomes apparent though, when we want the character to for example respect boundaries such as walls, follow the contours of uneven terrain or even fall down from cliffs.
 
@@ -1090,7 +1090,7 @@ The data received from the skeleton tracking system is very noisy, which means t
 
 Bodily interaction methods with no physical buttons to press often require some other way to emulate these types of triggered events. One way to do this is to track the body for gestures, certain predefined movements that signal the intent. For RUIS we implemented a simple hold gesture and a jump gesture, along with the necessary framework for users to be able to create their own more complex ones.
 
-As the basis for a gesture system, we provide an interface, which every gesture should implement. For the most barebones interface, only a function to check whether the gesture was triggered would be needed, but we add some functions to ease the use of gestures, such as functions to enable and disable the gesture. For some types of gestures it can be useful to know how far the gesture has progressed, which is why we also specify a GetGestureProgress function in our interface. By implementing this interface, anything can pose as a RUIS gesture - even complex button combinations can be made into a gesture. 
+As the basis for a gesture system, we provide an interface, which every gesture should implement. For the most barebone interface, only a function to check whether the gesture was triggered would be needed, but we add some functions to ease the use of gestures, such as functions to enable and disable the gesture. For some types of gestures it can be useful to know how far the gesture has progressed, which is why we also specify a GetGestureProgress function in our interface. By implementing this interface, anything can pose as a RUIS gesture - even complex button combinations can be made into a gesture. 
 
 For the user to be able to easily create gestures, we have created a simple point tracker that tracks a transform on a frame-to-frame basis and calculates statistics about its movement. Currently it only calculates average speed, maximum velocity and average velocity. For some cases it might be good to get the average speed, non-directional velocity, instead of the average velocity, which is why we have separate values. This point tracker is made to be easily extendable to capture for example angular velocity. Gestures can use these point trackers to check for relevant information.
 
@@ -1112,7 +1112,7 @@ The main wand controller RUIS has used from the beginning is the PS Move. It pro
 
 To connect to the Move.me server we use PSMoveWrapper \cite{PSMoveWrapper}, a networking library that implements all the necessary network functionality to use the full features of the Move controllers. On top of this library we created the class RUISPSMoveWand, inheriting from RUISWand, to encapsulate all the relevant features. This way we can for example control which coordinate system the positional data is given in.
 
-One difficulty we faced with the version of PSMoveWrapper we used was that the WasPressed and WasReleased functions, used to check whether a button has been pressed since the last frame, only worked for the first call made to them during an update cycle. This is unwanted behavior and would result in many hard-to-find bugs for users - they would have to read the PSMoveWrapper source code to find out what is happening. We fixed this problem by restructuring the functions so that they return correct values for the whole update cycle.
+One difficulty we faced with the version of PSMoveWrapper we used was that the WasPressed and WasReleased functions, used to check whether a button has been pressed since the last frame, only worked for the first call made to them during an update cycle. This is unwanted behavior and would result in many hard to find bugs for users - they would have to read the PSMoveWrapper source code to find out what is happening. We fixed this problem by restructuring the functions so that they return correct values for the whole update cycle.
 
 \subsection{Razer Hydra}
 \label{subsection:wandcontrollers:hydra}
@@ -1185,9 +1185,9 @@ Each Spring the Department of Media Technology organizes the course T-111.5400 V
 \section{TurboTuscany}
 \label{section:turbotuscany}
 
-For the launch of the RUIS we decided to create a demo using the Oculus Rift Tuscany demo as a base. This way, we can showcase the features of RUIS, while still creating a demo that is instantly recognizable to most Oculus Rift owners. The development of TurboTuscany also revealed many things that we could improve upon and helped us focus our development efforts on the most important features still missing or unfinished, e.g. head tracking and Kinect avatar customisability.
+For the launch of the RUIS we decided to create a demo using the Oculus Rift Tuscany demo as a base. This way, we can showcase the features of RUIS, while still creating a demo that is instantly recognizable to most Oculus Rift owners. The development of TurboTuscany also revealed many things that we could improve upon and helped us focus our development efforts on the most important features still missing or unfinished, e.g. head tracking and Kinect avatar customizability.
 
-The original Oculus Tuscany demo features a scene in Tuscany that the user can explore by using theh Rift and a controller or keyboard. The most noticeable new feature we add to this demo is a user avatar. The user can see his own tracked body, or in this case a grandma avatar, when looking around with the Rift. Using his own body the user can then interact with the environment in many ways, such as walking, throwing objects and falling off rooftops. At the time of release, our TurboTuscany demo was the only Oculus Rift demo featuring thorough Kinect avatar functionality like this. Movement blending between the default avatar animations and Kinect are handled by our blending system. The grandma avatar's legs are animated via Mecanim when the character is moving and by Kinect when the grandma is standing still. The rest is completely controlled by Kinect. This results in more realistic looking walking, since the character does not slide against the ground.
+The original Oculus Tuscany demo features a scene in Tuscany that the user can explore by using the Rift and a controller or keyboard. The most noticeable new feature we add to this demo is a user avatar. The user can see his own tracked body, or in this case a grandma avatar, when looking around with the Rift. Using his own body the user can then interact with the environment in many ways, such as walking, throwing objects and falling off rooftops. At the time of release, our TurboTuscany demo was the only Oculus Rift demo featuring thorough Kinect avatar functionality like this. Movement blending between the default avatar animations and Kinect are handled by our blending system. The grandma avatar's legs are animated via Mecanim when the character is moving and by Kinect when the grandma is standing still. The rest is completely controlled by Kinect. This results in more realistic looking walking, since the character does not slide against the ground.
 
 In addition to the Kinect features mentioned, we add PS Move and Razer Hydra functionality to provide for example positional head tracking, a feature Oculus Rift sorely misses to be at its best in virtual reality applications. The details of the head tracking system itself are covered in section \ref{subsection:wandcontrollers:headtracking}. Both controllers are also used to interact with objects with the selection methods outlined in section \ref{subsection:wandcontrollers:selection}.
 
