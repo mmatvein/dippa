@@ -795,7 +795,7 @@ In CAVE and non-HMD systems a big part of the depth effect and positional awaren
         \caption{On-axis projection}
         \label{subfig:keystoneOriginal}
     \end{subfigure}
-    \\[0.3em]
+    \\[1em]
     \begin{subfigure}{\textwidth}
         \includegraphics[width=\textwidth]{Off-AxisProjection.pdf}
         \caption{Off-axis projection}
@@ -804,7 +804,7 @@ In CAVE and non-HMD systems a big part of the depth effect and positional awaren
     \caption{On- and off-axis projections: oblique, top and side views.} \label{fig:frustumSkewing}
 \end{figure}
 
-Akenine-Möller et al. \cite{RTR3} define the basic perspective projection matrix $P_p$ in equation \eqref{matrix:basicperspective}, where $n$, $f$, $t$, $b$, $r$ and $l$ are the near, far, top, bottom, right and left planes, respectively. This matrix, when applied to a point $p = (p_x, p_y, p_z, p_w)$, transforms $p$ into normalized device coordinates. To get the final projected point $q$ on the near plane, $p$ will have to be divided by its $w$ coordinate: $q = (p_x/w, p_y/w, p_z/w)$.
+Akenine-Möller et al. \cite{RTR3} define the basic perspective projection matrix $P_p$, shown in equation \eqref{matrix:basicperspective}, where $n$, $f$, $t$, $b$, $r$ and $l$ are the near, far, top, bottom, right and left planes, respectively. This matrix, when applied to a point $p = (p_x, p_y, p_z, p_w)$, transforms $p$ into normalized device coordinates. To get the final projected point $q$ on the near plane, $p$ will have to be divided by its $w$ coordinate: $q = (p_x/w, p_y/w, p_z/w)$.
 
 \begin{equation}
 \label{matrix:basicperspective}
