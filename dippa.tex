@@ -787,7 +787,22 @@ The last part in setting up a correct stereoscopic view is configuring the camer
 
 In CAVE and non-HMD systems a big part of the depth effect and positional awareness comes from moving the head in relation to the display. If the image on the screen stays static, the effect is non-existent and the screen will look like a picture frame. By adding head tracking and shifting the viewpoint with the head, a new level of depth is achieved. Even this results in a relatively flat image, though. To take the effect even further, the projection matrix used for the cameras can be modified to make the display or projector screen seem like a window to the virtual world. This effect is demonstrated well in Lee's \cite{JohnnyLeePerspective} video on the subject. The projection matrix has to be modified so that the frustum edges from each eye match the corresponding display edges. This requires knowledge of both the eye locations as well as the display location in tracker coordinates.
 
-\hl{image of frustum getting skewed}
+\begin{figure}[h]
+    \centering
+    \captionsetup{justification=centering}
+    \begin{subfigure}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{On-AxisProjection.pdf}
+        \caption{Original image,\\projector on-axis}
+        \label{subfig:keystoneOriginal}
+    \end{subfigure}
+    \\[0.3em]
+    \begin{subfigure}{0.4\textwidth}
+        \includegraphics[width=\textwidth]{Off-AxisProjection.pdf}
+        \caption{Horizontal keystoning,\\projector positioned left}
+        \label{subfig:keystoneHorizontal}
+    \end{subfigure}
+    \caption{On- and off-axis projections: oblique, top and side views.} \label{fig:frustumSkewing}
+\end{figure}
 
 Akenine-Möller et al. \cite{RTR3} define the basic perspective projection matrix $P_p$ in equation \eqref{matrix:basicperspective}, where $n$, $f$, $t$, $b$, $r$ and $l$ are the near, far, top, bottom, right and left planes, respectively. This matrix, when applied to a point $p = (p_x, p_y, p_z, p_w)$, transforms $p$ into normalized device coordinates. To get the final projected point $q$ on the near plane, $p$ will have to be divided by its $w$ coordinate: $q = (p_x/w, p_y/w, p_z/w)$.
 
