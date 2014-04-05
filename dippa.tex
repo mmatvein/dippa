@@ -838,7 +838,9 @@ P_p = \begin{pmatrix}
  \end{pmatrix}
  \end{equation}
  
-In the general use case, the projection is centered, meaning that $r = -l$ and $t = -b$. To create oblique frustums, the kind of frustums used in head-tracked views, these values will have to be calculated based on the positions of the eyes relative to the final display surface. Kooima \cite{KooimaPerspective} introduces the mathematics behind these calculations. For the calculation of the right, left, top and bottom planes, a set of points have to be specified, defining the boundaries of the frustum. For the display surface, which in Kooima's method is assumed to be rectangular, three corner points will be needed: bottom left, $p_a$; bottom right, $p_b$; and top left, $p_c$. These points are then used to construct an orthonormal base for the display surface. In RUIS, a display surface is specified by the display normal, $v_n$; the display up vector, $v_u$; and the display width, height and center. We feel this is an easier way to specify display coordinates, even though it requires more input from the user. The coordinates for the display corners ($p_a$, $p_b$, $p_c$) are then calculated using the user specified values. In addition to the aforementioned points, the eye location $p_e$ is also required to compute the extents of the frustum.
+In the general use case, the projection is centered, meaning that $r = -l$ and $t = -b$. To create oblique frustums, the kind of frustums used in head-tracked views, these values will have to be calculated based on the positions of the eyes relative to the final display surface. 
+
+Kooima \cite{KooimaPerspective} introduces the mathematics behind these calculations. For the calculation of the right, left, top and bottom planes, a set of points have to be specified, defining the boundaries of the frustum. For the display surface, which in Kooima's method is assumed to be rectangular, three corner points will be needed: bottom left, $p_a$; bottom right, $p_b$; and top left, $p_c$. These points are then used to construct an orthonormal base for the display surface. In RUIS, a display surface is specified by the display normal, $v_n$; the display up vector, $v_u$; and the display width, height and center. We feel this is an easier way to specify display coordinates, even though it requires more input from the user. The coordinates for the display corners ($p_a$, $p_b$, $p_c$) are then calculated using the user specified values. In addition to the aforementioned points, the eye location $p_e$ is also required to compute the extents of the frustum.
 
 According to Kooima, the following intermediary values are to be calculated in order to get to the final $r$, $l$, $t$ and $b$ values: the vectors from the eye location to the display corners $v_a$, $v_b$ and $v_c$, and the distance from the eye to the display, $d$. These values are computed with the equations \eqref{equation:perspectiveintermediary}-\eqref{equation:perspectiveintermediarylast}.
 
@@ -880,9 +882,9 @@ These values can be inserted into the default perspective projection matrix $P_p
 \end{pmatrix}
 \end{equation}
 
-This end result is then plugged into Unity's Camera projection matrix, but in order to get the correct end result we disable Unity's automatic camera model view matrix (\emph{worldToCameraMatrix}) and replace it with our own. The replacing matrix is the inverse of the transform of the camera.
+This end result is then plugged into Unity's Camera projection matrix, but in order to get the correct end result we disable Unity's automatic camera model view matrix (\emph{Camera.worldToCameraMatrix}) and replace it with our own. The replacing matrix is the inverse of the transform of the camera.
 
-\hl{end section}
+By using this perspective projection matrix instead of the default one, a significantly stronger depth sensation can be achieved without necessarily even using stereo imaging. The projection matrix will have to be modified further, though, to account for differences in projector setups. The problem and its solution is detailed in the next section.
 
 \section{Projector Keystone Correction}
 \label{section:keystonecorrection}
@@ -984,6 +986,10 @@ As the projection matrix only changes the visual elements on the display, not th
  \end{pmatrix}
  \caption{Example of a keystone correction matrix} \label{fig:keystonematrixexample}
 \end{figure}
+
+To combine this keystone correction procedure with the perspective projection modifications of section \ref{section:perspectiveprojection}, all that is needed is to substitute the custom head-tracked perspective projection matrix for the default one. There are no dependencies between the head-tracked projection matrix and the keystone correction matrix, so either one of the matrices can be tweaked without affecting the other. 
+
+This concludes this chapter's solutions to CAVE related challenges, but another large subset of virtual reality applications is the vast number of software for head-mounted displays, that have become very popular lately with the advent of Oculus VR and its first product, Oculus Rift. These applications battle with their own set of problems, which are discussed in the next section.
 
 \section{Integrating Oculus Rift}
 \label{section:integratingoculusrift}
@@ -1145,6 +1151,8 @@ In principle, the skeleton wand works by creating the selection ray between two 
 
 \subsection{Selecting Objects}
 \label{subsection:wandcontrollers:selection}
+
+\hl{needs pics}
 
 One of the most basic ways to interact with the virtual environment with a wand controller is to use it to point at objects and select them. In RUIS we implement this functionality by introducing two components, RUISWandSelector and RUISSelectable, which are attached to the wand and the object to be selected, respectively. As an overview, the wand selector component constantly casts rays to check whether a selectable object is in front of the wand selection ray. If the user then presses the selection button, or signals the intent to select in another way, the object is selected and it starts following the wand's movements. First, I will discuss the necessary groundwork this requires on the wand's side, after which I will go into more detail regarding the behavior of the selected object.
 
