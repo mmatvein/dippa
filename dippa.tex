@@ -576,15 +576,26 @@ Virtual reality setups vary a lot, with multi-projector systems like the CAVE Au
 
 This chapter briefly discusses the history of virtual reality and how it has come to the stage where a toolkit like RUIS makes it feasible for hobbyists to get involved.
 
+\section{What is Virtual Reality?}
+\label{section:whatisvr}
+
+Virtual reality is hard to define as a concept, since there are very few factors that are common to all virtual reality applications. Sherman and Craig \cite{Sherman:2002:UVR:581839} define virtual reality as a medium composed of four key elements: virtual world, immersion, sensory feedback and interactivity. All of these four are necessary for an application to be considered virtual reality. 
+
+The first, virtual world, is the actual imaginary content that the user is experiencing. Virtual worlds can be worlds imagined by authors of books or even virtual representations of underlying hardware, such as virtual memory. As such, a virtual world is not enough to make up a whole virtual reality system, as the world will have to be manifested through a medium.
+
+The second, immersion, means that the user will be engulfed in the virtual world. In its essence, you will be able to experience a world other than the one you are living in. Immersion is a significant factor contributing to the success of most modern media, such as movies and games. Virtual reality systems, however, usually take this to a whole new level with screens that surround the user or even head-mounted displays that block out everything except the virtual world shown on the screen. Sherman and Craig 
+
+
+
 \section{Brief History of Virtual Reality}
 \label{section:historyofvr}
-
-Virtual reality is hard to define as a concept, since there are very few factors that are common to all virtual reality applications. Sherman and Craig \cite{Sherman:2002:UVR:581839} define virtual reality as a medium composed of four key elements: the virtual world, immersion, sensory feedback and interactivity. \hl{comparison to games}
 
 According to Burdea and Coiffet \cite{Burdea:2003:VRT:829566}, the first steps of virtual reality as we know it were taken in 1962 by Morton Heilig with his Sensorama Simulator virtual reality video arcade. This arcade featured something for all senses and simulated a motorcycle ride through New York City, with its sights, sounds, smells and even the feeling of the motorcycle vibrating. Heilig also worked on the precursor to modern head-mounted displays (HMD), by designing a simulation mask with multi-sensory functionality - a device for which he was issued a patent in 1960. 
 
 -cave in 92 \\
--disney 
+-disney  \\
+ \hl{comparison to games}
+
 
 \section{Applications of Virtual Reality}
 \label{section:applicationsofvr}
@@ -1131,24 +1142,27 @@ For both the hold and jump gestures, an important factor to take into considerat
 \section{Wand Controllers}
 \label{section:wandcontrollers}
 
+Using pointing devices is one of the most common and intuitive ways of interacting with virtual content, as long as the interaction methods are sound. We have tried to create an input management system that allows application creators to concentrate exactly on the interaction methods and forget about the implementation details. 
+
+As the basic building block of wand-based interaction we provide the abstract component RUISWand, which specific wand implementations will inherit. The RUISWand component provides an interface that all wands have to conform to in order to be used for example for our pre-built selection methods detailed in subsection \ref{subsection:wandcontrollers:selection}.
+
+\hl{kerro interfacesta}
+
 \subsection{PlayStation Move}
 \label{subsection:wandcontrollers:psmove}
 
-The main wand controller RUIS has used from the beginning is the PS Move. It provides accurate tracking with a relatively low latency. To use Move controllers, however, is not as straightforward as it could be, because of Sony's limitations on the tracking software. Currently, the only way to properly use the full functionality of the PS Move controllers is to use a PlayStation 3 console and its Move.me application. This application then acts as a server to which applications can connect via TCP and UDP. Some attempts have been made to create open source tracking software for the PC, but Sony's software's sophistication has made it very hard to replicate all the functionality accurately.
+The main wand controller RUIS has used from the beginning is the PS Move. It provides accurate tracking with a relatively low latency. To use Move controllers, however, is not as straightforward as it could be, because of Sony's limitations on the tracking software. Currently, the only way to properly use the full functionality of the PS Move controllers is to use a PlayStation 3 console and its Move.me application. This application then acts as a server to which client applications can connect via TCP and UDP. Some attempts have been made to create open source tracking software for the PC, but the sophistication of Sony's tracking has made it very hard to replicate all the functionality accurately, especially with multiple controllers.
 
 To connect to the Move.me server we use PSMoveWrapper \cite{PSMoveWrapper}, a networking library that implements all the necessary network functionality to use the full features of the Move controllers. On top of this library we created the class RUISPSMoveWand, inheriting from RUISWand, to encapsulate all the relevant features. This way we can for example control which coordinate system the positional data is given in.
 
-One difficulty we faced with the version of PSMoveWrapper we used was that the WasPressed and WasReleased functions, used to check whether a button has been pressed since the last frame, only worked for the first call made to them during an update cycle. This is unwanted behavior and would result in many hard to find bugs for users - they would have to read the PSMoveWrapper source code to find out what is happening. We fixed this problem by restructuring the functions so that they return correct values for the whole update cycle.
-
-\subsection{Razer Hydra}
-\label{subsection:wandcontrollers:hydra}
+One difficulty we faced with the version of PSMoveWrapper we used was that the WasPressed and WasReleased functions, used to check whether a button has been pressed since the last frame, only worked for the first call made to them during an update cycle. This is unwanted behavior and would result in many hard to find bugs for users - they would have to read the PSMoveWrapper source code to find out what is happening. We fixed this problem by restructuring the functions so that they return correct values for the whole update cycle. This was also corrected by the developer of PSMoveWrapper later on, but didn't make it into our release.
 
 \subsection{Skeleton Wand}
 \label{subsection:wandcontrollers:skeleton}
 
 By using the gesture system outlined in \ref{subsection:skeletontracking:gestures}, we created a simple way for the user to point at and select objects by using Kinect only. The skeleton wand emulates wand functionality by creating the wand pointer ray from the user's forearm and using a hold gesture to track selection. 
 
-In principle, the skeleton wand works by creating the selection ray between two transforms. While we could have left the selection of transforms open, so the skeleton wand would have been more versatile (and probably not named correctly anymore), we felt like at this stage choosing directly from two skeleton joints would be easier to use and more intuitive.
+In principle, the skeleton wand works by creating the selection ray between two transforms. While we could have left the selection of transforms open, so the skeleton wand would have been more versatile (and probably not named correctly anymore), we felt like at this stage choosing directly from two skeleton joints would be easier to use and more intuitive for new users.
 
 \subsection{Selecting Objects}
 \label{subsection:wandcontrollers:selection}
