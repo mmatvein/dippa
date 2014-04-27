@@ -632,7 +632,7 @@ In parallel with Sutherland's work, Batter and Brooks \cite{batter1971grope} sta
     \label{figure:GROPE}
 \end{figure}
 
-Rendering technology also took a big leap forward during the 1970s, as computers started becoming powerful enough to render virtual scenes in real time. 
+Rendering technology also took a big leap forward during the 1970s, as computers started becoming powerful enough to render virtual scenes in real time. In 1981 Jim Clark, a Stanford professor, founded Silicon Graphics, Inc. that provided graphics workstations to be used for VR installations \cite{Sherman:2002:UVR:581839}. During this time, interactive entertainment such as games started becoming more and more popular, with movies like Tron quickly latching onto the new phenomenon. From the 80s to the present day, entertainment has been one of the major driving forces behind graphical processing power; especially once special 3D graphics accelerators became popular in the end of the 90s. 
 
 
 -cave in 92 \\
@@ -767,9 +767,9 @@ This chapter details the design considerations in the development of RUIS.
 \section{Unity3D}
 \label{section:unity3d}
 
-Unity3D (commonly referred to as simply Unity) \cite{UnitySite} is a game development environment and an engine that has recently gained a lot of popularity because of its power and ease of use. Unity3D simplifies common game development and content creation tasks, shortening development time. Unity3D includes a vast number of features including a graphics and audio engine, integration of the PhysX physics engine, networking functionality and profiling tools, making it a good all-round candidate especially for game development. Other similar products include Unreal Development Kit, Panda3D and Torque3D, while on the AAA game development front Unreal Engine, CryEngine and idTech are some of the most famous ones.
+Unity3D (commonly referred to as simply Unity) \cite{UnitySite} is a game development environment and an engine that has recently gained a lot of popularity because of its power and ease of use. Unity3D simplifies common game development and content creation tasks, therefore shortening development time. Unity3D includes a vast number of features including a graphics and audio engine, integration of the PhysX physics engine, networking functionality and profiling tools, making it a good all-round candidate especially for game development. Other similar products include Unreal Development Kit, Panda3D and Torque3D, while on the AAA game development front Unreal Engine, CryEngine and idTech are some of the most famous ones.
 
-Code architecture in Unity3D is very much based on building game objects from Components that implement some relatively modular behaviors. All objects in the scene, GameObjects in Unity3D's terminology, include some basic features such as a Transform, containing information about the GameObject's position, rotation and scale. Functionality can be added by creating scripts that inherit the MonoBehaviour class and attaching the scripts to the relevant GameObjects. These scripts override some of the base class' functions, such as Start, called when the object is created and Update, called every frame.
+Code architecture in Unity3D is very much based on building game objects from components that implement some relatively modular behaviors. All objects in the scene, GameObjects in Unity3D's terminology, include some basic features such as a Transform, containing information about the GameObject's position, rotation and scale. Functionality can be added by creating scripts that inherit the MonoBehaviour class and attaching these scripts to the relevant GameObjects. These scripts override some of the base class' functions, such as Start, called when the object is created and Update, called every frame.
 
 Unity3D also features prefabs: prefabricated objects that can be drag and dropped into a scene. This allows users to create pre-built common game objects and easily share them between scenes. The use of prefabs is an important part of using Unity3D efficiently, so it was a big point to take into consideration in the development of RUIS. 
 
@@ -788,6 +788,8 @@ Unity3D also features prefabs: prefabricated objects that can be drag and droppe
 
 \subsection{Custom Editors}
 \label{subsection:systemarchitecture:customeditors}
+
+To ease the configuration of custom MonoBehaviours, Unity3D provides the option for programmers to create custom editors for each component. The default editor functionality can be extended quite a bit using these custom editor scripts. In addition to making the editing of objects better, programmers can also insert hooks that do housekeeping and data management based on user input. This way, some of the data can for example be visualized for easier configurability. 
 
 -displaymanager & ruisdisplay
 -headtracker
