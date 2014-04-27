@@ -789,9 +789,16 @@ Unity3D also features prefabs: prefabricated objects that can be drag and droppe
 \subsection{Custom Editors}
 \label{subsection:systemarchitecture:customeditors}
 
-To ease the configuration of custom MonoBehaviours, Unity3D provides the option for programmers to create custom editors for each component. The default editor functionality can be extended quite a bit using these custom editor scripts. In addition to making the editing of objects better, programmers can also insert hooks that do housekeeping and data management based on user input. This way, some of the data can for example be visualized for easier configurability. Also, compared to the default editor behavior given by Unity3D, custom editors can be used to constrain values to certain limits.
+To ease the configuration of custom MonoBehaviours, Unity3D provides the option for programmers to create custom editors for each component. The default editor functionality can be extended quite a bit using these custom editor scripts. In addition to making the editing of objects better, programmers can also insert hooks that do housekeeping and data management based on user input. This way, some of the data can for example be visualized for easier configurability. Also, compared to the default editor behavior given by Unity3D, custom editors can be used to constrain values to certain limits. The difference between having a custom editor and not having one is in some cases quite drastic, as for example figure \ref{figure:editorvsnoeditor} demonstrates.
 
-RUIS features several components that require extensive configuration before usage. Therefore, we deemed it important for the sake of usability to create custom editors for these components. 
+RUIS features several components that require extensive configuration before usage. Therefore, we deemed it important for the sake of usability to create custom editors for these components. Especially our display configuration management system benefits greatly from all the behind-the-scenes processing the custom editors do, such as setting up build defaults to the correct values, managing display order, visualizing the physical location of displays and calculating the needed resolutions. On the input management side, the main positives are the filtering of customization options based on input and providing the user with informative tooltips and descriptions for each item, as the behaviors of components might not always be straightforward.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{editorvsnoeditor.png}
+    \caption{The difference of having a custom editor versus not having one. The RUISTracker component becomes very hard to configure without a good editor.}
+    \label{figure:editorvsnoeditor}
+\end{figure}
 
 -displaymanager & ruisdisplay
 -headtracker
